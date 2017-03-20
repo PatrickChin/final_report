@@ -6,19 +6,18 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows.meta}
 
-% GNUPLOT required
 \begin{document}
 
 \begin{tikzpicture}[scale=1.2,domain=0:5]
-	\draw[very thin,color=gray,xshift=-0.1,xstep=pi/4,ystep=0.5] (-0.1,-1) grid (5,1.1);
 
 	% defocusing rectangle
 	\fill[black!40!white, opacity=0.5] (pi/4,1) rectangle (3*pi/4,-1);
 	\draw (pi/2,-1) node[color=black,anchor=north] {defocusing};
 
-	% Axis
+	% axis and grid
 	\draw[-Latex] (-0.2,0) -- (5,0) node[right] {$z-ct$};
 	\draw[-Latex] (0,-1.2) -- (0,1.2) node[above] {$-eE_Z$};
+	\draw[very thin,color=gray,xshift=-0.1,xstep=pi/4,ystep=0.5] (-0.1,-1) grid (5,1.1);
 
 	% sin curve
 	\draw[color=red,smooth,thick,samples=200] plot[id=-sin] function{-sin(2*x)}

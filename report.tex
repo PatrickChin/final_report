@@ -1,53 +1,69 @@
 
-\documentclass[a4paper]{report}
-
-\usepackage{jheppub}
-\pagestyle{myplain}
+% \documentclass[a4paper,twocolumn,sort&compress]{article}
+\documentclass[5p,twocolumn,sort&compress]{elsarticle}
+% \documentclass[final,5p,times,twocolumn,sort&compress]{elsarticle}
+% \documentclass[a4paper,12pt]{report}
 
 \usepackage{amsmath}
-\usepackage{algorithmic}
-\usepackage{array}
-\usepackage{siunitx}
-\usepackage{url}
+\usepackage[binary-units=true]{siunitx}
 \usepackage{hyperref}
-% \usepackage{subcaption}
-\usepackage{lipsum}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage[hmargin=0.5in,vmargin=1in]{geometry}
+\usepackage{enumitem}
+
+
+\sisetup{range-units=single}
+\sisetup{range-phrase=\kern 0.08333em--}
+
+\title{Simulating the Measurement of the\\Electron Beam Emittance at AWAKE}
+\author{Patrick~Chin}
+% \author[ucl]{P.~Chin}
+% \author[ucl]{E.~Simpson~Dore}
+% \author[ucl]{L.~Deacon}
+% \author[ucl]{F.~Keeble}
+% \author[ucl]{S.~Jolly}
+% \author[ucl]{M.~Wing}
+% \address[ucl]{UCL, Gower Street, London WC1E 6BT, UK}
+\date{\today}
 
 \begin{document}
 
-\title{Simulating the Measurement of the\\Electron Beam Emittance at AWAKE}
-\author{Patrick~Chin,}
-\author{Emma~Simpson~Dore,}
-\author{Lawrence~Deacon,}
-\author{Fearghus~Keeble,}
-\author{Simon~Jolly,}
-\author{and Matthew~Wing}
-\emailAdd{p.ch@live.co.uk}
-\emailAdd{emma.dore.13@ucl.ac.uk}
-\affiliation{Department of Physics and Astronomy, University College London,\\
-	Gower Street, London, England}
-\collaboration{The AWAKE Collaboration}
-
-\abstract{
-	In preparation for the experiments at AWAKE, simulations were used to
-	determine to what precision the spectrometer is to be able to measure the
-	emittance of the accelerated electron beam. A range of experimental
-	parameters, including bunch size, energy, energy spread, emittance were
-	tested and the degree to which these parameters effect the measurement of
-	the emittance were determined. Systematic errors arising from the discrete
-	pixels on the screen were found to increase the measurement emittance by
-	\SI{1e-8}{\meter\radian}.
-}
-
-\keywords{plasma wakefield, spectrometer, emittance, electron beam, simulation}
-
-
 \maketitle
-% \tableofcontents
-\newpage
+\clearpage
+
+\twocolumn[
+	\begin{@twocolumnfalse}
+		\begin{abstract}
+			% In preparation for the experiments at AWAKE, simulations were used to
+			% determine to what precision the spectrometer is to be able to measure the
+			% emittance of the accelerated electron beam. A range of experimental
+			% parameters, including bunch size, energy, energy spread, emittance were
+			% tested and the degree to which these parameters effect the measurement of
+			% the emittance were determined. Systematic errors arising from the discrete
+			% pixels on the screen were found to increase the measurement emittance by
+			% \SI{1e-8}{\meter\radian}.
+		\end{abstract}
+
+		% \begin{keyword}
+		% 	plasma wakefield \sep
+		% 	spectrometer \sep
+		% 	emittance \sep
+		% 	electron beam \sep
+		% 	self-modulation instability
+		% \end{keyword}
+	\end{@twocolumnfalse}
+]
+
+\clearpage
+\tableofcontents
 
 \include{introduction}
-\include{outline}
+\include{theory}
+\include{simulation}
+\include{results}
+\include{conclusion}
+% \include{appendix}
 
 \bibliographystyle{ieeetr}
 \bibliography{references}

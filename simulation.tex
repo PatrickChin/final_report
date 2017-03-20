@@ -1,0 +1,222 @@
+
+\section{The Simulation}
+
+The simulation of this experiment was split into three logical parts: the
+simulation of the beam, the background and camera readout simulation, and the
+reconstruction of the beam.
+% the following is bs
+It is designed such that each part of the code is able to act indepentently.
+
+\subsection{The Electron Beam}
+
+Given enough computing power and time, the simulation of the beam exiting the
+plasma cell, passing through two quadrupoles and through a dipole could have
+been done on BDSIM, a Geant4 toolkit for simulating radiation traveling through
+an accelerator. This software package takes a particle and updates it's
+position and velocity each step through the accelerator, applying the affect of
+forces from all fields within the accelerator.  For beams of \num{1e9}
+electrons, tracking each particle as it travels down the beamline is
+impractical, therefore a new software was written that simulated the beam as
+a whole.
+
+\subsubsection{BDSIM calibration}
+
+% TODO why use bdsim
+% For a large sampe size
+% got get
+% Many particles will take very similar paths along the beam line.
+
+BDSIM was used to simulate the firing of \num{100 000} single electrons down
+the AWAKE beamline. These electrons had a square energy distribution, from
+\SIrange{0}{10}{\tera\electronvolt} and no transverse momentum meaning no
+emittance. These were used to plot 
+
+Since the effect of the dipole on the beam depends on the energy of each
+individual particle, the evolution of the beam through the dipole cannot be
+calculated reasonably using beam matrices. So, to simulate the dipole, 
+
+\subsubsection{Deriving the Beam Size Function}
+
+The root mean square of the vertical beam size on the screen can be extracted
+from the resultant beam matrix \ref{}.
+
+The beam matrix element \(\sigma_{11} = \langle y^2 \rangle = \epsilon\beta\)
+
+Multiplying the transport matricies for the quadrupoles and drifts
+
+% \begin{align*}
+% 	\bm{\sigma}_1 &=
+% 	\epsilon
+% 	\begin{pmatrix}
+% 		\beta & -\alpha \\
+% 		-\alpha & \gamma
+% 	\end{pmatrix} =
+% 	\mathcal{M}\;\bm{\sigma}_0\;\mathcal{M}^T, \quad
+% 	% \text{where}\quad
+% 	\epsilon = \sqrt{\det{\bm{\sigma}}}, \quad
+% 	\beta\gamma-\alpha^2=1, \quad
+% 	\tan2\varphi = \tfrac{2\alpha}{\gamma-\beta}
+% 	\\[1em] %
+% 	\mathcal{M} &= \underbrace{
+% 	\begin{pmatrix}
+% 		1 & d \\
+% 		0 & 1
+% 	\end{pmatrix}}_\text{drift}
+% 	\cdot
+% 	\underbrace{
+% 	\begin{pmatrix}
+% 		\cos\varphi_1 & \tfrac{\sin\varphi_1}{\sqrt{k_1}} \\
+% 		-\sqrt{k_1}\sin\varphi_1 & \cos\varphi_1
+% 	\end{pmatrix}}_\text{vertically focusing quadrupole}
+% 	\cdot
+% 	\underbrace{
+% 	\begin{pmatrix}
+% 		1 & g_2 \\
+% 		0 & 1
+% 	\end{pmatrix}}_\text{gap}
+% 	\cdot
+% 	\underbrace{
+% 	\begin{pmatrix}
+% 		\cosh\varphi_2 & \tfrac{\sinh\varphi_2}{\sqrt{|k_2|}} \\
+% 		-\sqrt{k_2}\sinh\varphi_2 & \cosh\varphi_2
+% 	\end{pmatrix}}_\text{horizontally focusing quadrupole}
+% 	\cdot
+% 	\underbrace{
+% 	\begin{pmatrix}
+% 		1 & g_1 \\
+% 		0 & 1
+% 	\end{pmatrix}}_\text{gap}
+% \end{align*}
+
+
+% - Counting all of the backgroudn electrons as error did not increase the
+%   error by that much. I think the 
+% - why can't dipole be accounted for in the transport matricies
+% - what are the reasons for the quadrupoles?
+% - was i correct in thinking that we assumed the quadrupoles were set to focus
+% the mean beam energy? how will this work in the real spectrometer?
+% - in the out.root file (the calibration file) the primaries tree has 100 000 
+% entries whereas the prescreen sampler has 57 376. why is this?
+% - this may be a stupid question but just to clear things up, when creating
+%   the first histogram for each strip of x pixels (i.e. the histogram showing
+%   the distribution of the electrons on the screen) why is there an error
+%   along with this value? isn't this the exact number of electrons that hit
+%   the screen in this simulation and all the error should come from the
+%   background etc.
+% - is there anything important about your code that I missed in my presentation?
+
+
+
+% \begin{itemize}
+% 	\item code developed to simulate the electron beam travellilgn from the
+% 		iris of the plasma to t
+% 	\item bdsim too slow to simulate 1e9 electrons individually
+% 	\item instead 100 000 electrons were simulated in bdsim to create a
+% 		reference function between energy and final horizontal position
+% \end{itemize}
+
+After generating, a two dimensional histogram representing the number of
+electrons hitting the screen at each pixel the goal is to simulate the
+effectiveness of the equipment and translate this number to represent the raw
+signal that will be read off each pixel.
+
+\subsection{Backgrounds}
+
+How well the measurement of the emittance is, is most dependant on the
+magnitude of the multiple sources of backgrounds as well as the reliability of
+the equipment. The following sources of error were taken into account: the
+efficiency of the scintillator screen, the acceptance of the camera, the
+background photon density, the emittance of photoelectrons, the thermal noise,
+the microchannel plate (MCP) and the readout noise. Each source of noise is added
+to each pixel independently.
+
+% TODO ask about the acceptance value.
+% do we assume scintillator emits photons evenly?
+% how far is the camera from the screen - I should know this
+% what is the acceptance of the camera?
+% where does the value 1e5*64/80 come for the background photon density?
+% where do we assume the background photon density comes from
+
+The first two error sources, the scintillator screen and the camera acceptance,
+both scale the signal. So for each electron that hits the screen, it is
+expected that an average of \num{5000} \cite{} photons are to be emitted. The
+camera acceptance, is the ratio of photons that the camera registers to the
+number of photons emitted by the scintillator, with a value of \num{1.5e-5}.
+After the addition of these two effects, the camera is expected to receive
+\SI{7.5}{\percent} of the original electron signal. The expected value for the
+number of photons incident on the camera due to the beam electrons is a Poisson
+random number.
+
+It is assumed that there is a uniform distribution of photons incident on the
+camera. The density of these electrons is expected to be
+\SI{1e5}{\per\meter\squared} equating to \num{0.01} background photons per
+pixel during the \SI{3e-3}{\seconds} the gate is open. This is a discrete
+value, and so is also a Poisson random number. As discussed later in
+Section~\ref{sec:results} this value is very small in comparison to the signal
+produced by the beam and will only have an effect if the density of background
+photons is multiple magnitudes larger than the expected value.
+
+The camera's photomultipliers then convert the photons of light back to an
+electrical current. This multiplies the incident number of photons by the
+quantum efficiency of the camera, \num{0.15} \cite{}. The expected number of
+thermal photoelectrons per pixel per second is expected to be \num{0.016} at
+\SI{-30}{\celsius} with \SI{16}{\celsius} cooling water and an ambient room
+temperature of \SI{16}{\celsius}. This value is typically doubles for each
+\SI{5}{\celsius} rise in temperature of the camera.
+
+% TODO lookup Intensified CCD Cameras
+The microchannel plate amplifies the number of photoelectrons by \num{1442}
+amplifying all previously added backgrounds.
+This was simulated by simply scaling the value of the bin by this value rather
+than generating a Poisson random number centred about this value.
+% TODO why is a Poisson number not generated for MCP?
+
+And finally, before the values of the signal is obtained, a readout noise is
+added. This backgorund is expected to add \num{7.2} readout electrons per image
+pixel for the camera operating at \SI{1}{\mega\hertz}.
+% TODO see camera description for the readout noise
+
+\subsection{Error Calculations}
+
+Poisson statistics were used for the calculation of errors.  Once the shape of
+the incident beam on the screen was calculated the number of electrons incident
+on each pixel was given an error of the square root of the count. Two methods
+of error propagation were used depending on the nature of the process involved.
+The following processes are additive: the background photons, the thermal
+photoelectrons and the readout noise, whereas the multiplicative processes are:
+photon generation at the scintilator screen, photoelectron generation in the
+camera PMTs and the amplification of the electron signal by the MCP.
+
+Basic error propagation techniques were used here. For the additive processes,
+where the new value of each bin $n$ is the sum between the old bin value $n_0$
+and the value given by the process $n_\text{proc}$: $n=n_0+n_\text{proc}$ the
+propagation of error is given by calculating the hypotenuse of the absolute
+errors:
+
+\begin{equation}
+	\delta n= \sqrt{\delta n_0^2 + \delta n_\text{proc}^2}
+\end{equation}
+%
+where the error of a Poisson random number is the square root of the value.
+
+For the multiplicative processes, i.e. $n = \lambda_\text{proc}n_0 $ where
+$\lambda_\text{proc}$ is the scaling factor of the process the propagation of
+the error is given by calculating the hypotenuse of the percentage errors:
+
+\begin{equation}
+	\delta n= n \sqrt{
+		\left( \frac{\delta n_0}{n_0} \right)^2 +
+		\left( \frac{\delta n_\text{proc}}{n_\text{proc}} \right)^2}
+\end{equation}
+
+% TODO what is dn_proc ?? Why is the error dependant on the value of the
+% background which is an unknown when this is done practically. Shouldn't 
+% the background be the sqrt of the expected value?
+
+% TODO simply scaling the errors up with the MCP correct?
+
+\subsection{Binning errors}
+
+Initial result
+
+%TODO talk about the systematic error due to discrete binning
