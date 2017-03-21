@@ -1,0 +1,79 @@
+
+\section{AWAKE}
+
+The aim of this experiment is to provide a proof-of-concept for proton driven
+plasma wakefield acceleration to be able to accelerate electrons beams to the
+\si{\tera\electronvolt} energy scale. An overview of the experiment as described
+in the AWAKE design overview: \emph{AWAKE, The Advanced Proton Driven Plasma
+Wakefield Acceleration Experiment at CERN}~\cite{Gschwendtner2015rni} is as
+follows:
+
+The CERN Super Proton Synchrotron (SPS) will provide a
+\SI{400}{\giga\electronvolt} proton beam with a bunch length of \(\sigma_z =
+\SI{12}{\centi\meter}\) and an intensity of \(\sim \num{3e11}\) protons per
+bunch. This will travel down the \SI{750}{\meter} long proton beam line,
+previously used for the CERN Neutrinos to Gran Sasso project (CNGS), and be
+focused to a horizontal and vertical rms size \(\sigma_{x,y} =
+\SI{200}{\micro\meter}\) before entering a \SI{10}{\meter} long Rubiduim vapor
+plasma cell with an adjustable density at the \num{e14} to \num{e15}
+\si{electrons\per\centi\meter} scale.
+
+The proton driver will self modulate at the plasma wavelength \(\lambda_{pe}\)
+after being seeded by a high powered \(\approx \SI{4.5}{\tera\watt}\) laser
+pulse that is co-axial and co-propagating with the proton driver beam. This
+laser also serves the purpose of ionising the Rubidium vapor to create the
+plasma. For these beams to be co-axial for the full length of the plasma cell,
+they need to be synchronous to within \SI{100}{\pico\second} and the size of the
+focal point of the proton beam is required to be \(\le\SI{100}{\micro\meter}\)
+and \(\le\SI{15}{\micro\radian}\)
+
+The electron witness beam will be created via photo-emission by an illuminating
+cathode electron source and accelerated by a 2.5 cell RF-gun and a meter long
+booster at \SI{3}{\giga\hertz}.
+
+%TODO injection
+
+% \section{Project outline}
+
+% \lipsum[3-10]
+
+% The development of this experiment has been heavily simulation driven.
+% Simulation code developed specifically for the simulation of the plasma to be
+% able to resolve for time scales of \(\omega_p^{-1}\), (where \(\omega\) is the
+% frequency of the plasma wave) and length scales of down to \(c/\omega_p\), as
+% existing codes were not tuned to resolve at these scales.  Different simulation
+% softwares are tuned to be used for different sections of the AWAKE experiment.
+
+% I will be working on simulating the electron spectrometer using
+% BSDIM~\cite{agapov2009bdsim}, simulation software in active development,
+% designed to simulate and track particle beams passing through accelerators and
+% detectors. It is built on top of the Geant4
+% toolkit~\cite{agostinelli2003geant4} for the simulation of particles through
+% matter, which also provides the graphical user interface for a visualisation of
+% the simulation.  Event data is stored using ROOT~\cite{antcheva2011root}, an
+% advanced statistical analysis and visualisation framework designed to work for
+% petabyte scale data storage.
+
+% More specifically, I will initially be looking at calculating the emittance of
+% the accelerated electron beam using data from simulated accelerated electron
+% beams.  Recent simulations of the spectrometer used an idealised electron beam
+% \cite{deacon2016qjq} and I will be continuing this line of investigation.  The
+% electron beam profile and other properties immediately after it leaves the
+% plasma cell will be provided by separate simulations using LCODE.  This data is
+% used as input for the BDSIM simulation where we will simulate the beam passing
+% through dual focusing quadrupoles in both the horizontal and vertical planes.
+% The simulation will be able to provide all the raw data about the final state
+% of the electron beam, however, in reality we will not be able to simply query
+% the beam properties. The measurement of the energy spectrum will be carried out
+% by using a magnetic dipole downstream of the dual quadrupoles, and observing
+% the horizontal spread of the electron beam on a screen. This screen will also
+% be sumulated with BDSIM taking into account the screen resolution and detection
+% rates.
+
+% I will also be working on the modeling and simulation of the background
+% radiation from the plasma cell and other sources using real world data to help
+% build an accurate model.  All of these simultions along with real data will
+% help in finding optimal parameters for each component of the spectrometer,
+% including the strength of the quadrupoles and the dipole, the lens parameters
+% of the camera and the properties of the screen.
+
