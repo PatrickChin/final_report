@@ -2,12 +2,51 @@
 \section{Results}
 \label{sec:results}
 
-% TODO thermal noise very small
+Along with the fitted parameter values of the fit, each simulation output a
+plot, showing the simulated, measured and fitted values for the vertical beam
+size against the horizontal position on the screen. The solid black line is the
+shape of the simulated electron beam expected to hit the screen, the black
+points with error bars are the
+% TODO this is a mess
+measured root mean squared spread of the gaussian distributed vertical beam size
+of the
+
+\subsection{Binning errors}
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=1\linewidth]{./output/run-pespread/pespread_0.01/n1/graph.pdf}
+	\caption{
+		Blue line representing the reconstruction of the shape of the beam that
+		hits the screen consistently overestimates the vertical beam size. This
+		run used a small percentage energy spread of \SI{1}{\percent}. With all
+		other parameters set to their expected value.
+	}
+	\label{fig:yoverestimate}
+\end{figure}
+
+After the investigation of multiple experimental parameters, the emittance
+measurement consistently converged to a value \num{1e-8} larger than the input
+emittance. The reason for this systematic error was found to be due to the
+discritisation of the beam hitting the screen meaning that the measurement of
+the vertical beam size was consistently overestimated. Since the electrons in
+each pixel are not uniformly distributed but rather more densely distributed
+closer towards the mean value, giving rise to a systematic overestimation of the
+vertical beam size of up to two times the vertical size of the pixel. This
+effect can be seen most clearly when a very small energy spread was used as can
+be seen in Figure~\ref{fig:yoverestimate}, where the measured beam heights are
+consistently larger than the actual beam height.
+
 
 \subsection{Energy Spread}
 
-Initially, the mean energy of the beam and energy spread of the beam were
+% Initially, the mean energy of the beam and energy spread of the beam were tested
+% independently.
+It was found that the error of the measurement of the emittance 
+% TODO oh god this was the wierd one
 
 \subsection{Input Emittance}
+
+
 
 \subsection{Background Photons}

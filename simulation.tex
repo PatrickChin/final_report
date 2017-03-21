@@ -1,57 +1,123 @@
 
 \section{The Simulation}
+\label{sec:simulation}
+
+\begin{table}[tb]
+	\centering
+	\begin{tabular}{ll}
+		\hline \hline
+		Parameter & Expected value \\
+		\hline \hline
+		% Screen width & \SI{1}{\meter} \\
+		% Screen height & \SI{65}{\milli\meter} \\
+		% % FOV 1.149
+		% Horizontal pixels & 1850 \\
+		% % optical point spread function set to 0?
+		% % width of x sensor? \SI{25e-3}{\metre}
+		% Screen efficiency & \SI{5000}{photons\per electron}\\
+		% Camera acceptance & \num{1.5e-5} \\
+		Emittance \(\epsilon\) & \SI{1e-6}{\meter\radian} \\
+		\(\beta\) & 1 \\ % TODO units
+		\(\alpha\) & 0.5 \\ % TODO units
+		Mean energy \(\bar E\) & \SI{1.3}{\giga\electronvolt} \\
+		Energy spread \(\sigma_E\) & \SI{0.4}{\giga\electronvolt} \\
+		N. electrons \(N_{e^-}\) & \num{1e9} \\
+		% \(N_{e^-}\) & \num{4e8} \\
+		Bg. photons & \SI{1e5}{\per\meter\squared} \\ % TODO check
+		% Thermal electrons \(N_{e^-_\text{thermal}}\) & \SI{0.016}{\per\second} \\
+		\hline
+	\end{tabular}
+	\caption{
+		The expected values for many experimental parameters have been
+		calculated. It should be noted that these values are missing error
+		values. It can be assumed that the error on each value can be given by
+		half the least significant digit.
+	}
+	\label{tab:expected}
+\end{table}
 
 The simulation of this experiment was split into three logical parts: the
 simulation of the beam, the background and camera readout simulation, and the
 reconstruction of the beam.
 % the following is bs
-It is designed such that each part of the code is able to act indepentently.
+It is designed such that each part of the code is able to act independently.
 
 \subsection{The Electron Beam}
 
+% TODO BDSIM rly simulates a single particle at a time?
 Given enough computing power and time, the simulation of the beam exiting the
 plasma cell, passing through two quadrupoles and through a dipole could have
-been done on BDSIM, a Geant4 toolkit for simulating radiation traveling through
-an accelerator. This software package takes a particle and updates it's
-position and velocity each step through the accelerator, applying the affect of
-forces from all fields within the accelerator.  For beams of \num{1e9}
-electrons, tracking each particle as it travels down the beamline is
-impractical, therefore a new software was written that simulated the beam as
-a whole.
+been done on BDSIM~\cite{agapov2009bdsim}, a Geant4~\cite{agostinelli2003geant4}
+toolkit for simulating radiation traveling through an accelerator. This software
+package simulates a single particle at a time, updating it's position and
+velocity at each step through the accelerator, applying the effect of forces
+from all fields within the accelerator.  For beams consisting of \num{1e9}
+particles, tracking each particle individually as they travel down the beam line
+would take large amounts of time using the available computing power.
+
+A new program was written, taking advantage of beam matrices to describe the
+beam as a whole. The goal of the first part of this program is to simulate the
+intensity of the incident beam at each pixel on the screen.
 
 \subsubsection{BDSIM calibration}
 
-% TODO why use bdsim
-% For a large sampe size
-% got get
-% Many particles will take very similar paths along the beam line.
 
 The effect of the quadrupole and the dipole are dependant on the energy of the
-individual electrons in the beam.
+individual electrons in the beam. So binning each generated electron depending
+on it's energy and applying the transport matrix to each bin of electrons may
+seem to be the obvious next step. However, it is actually more useful to
+% TODO or to greatly simplify the simulation?
+work backwards, starting with each vertical strip of pixels and calculating the
+number of electrons with energy corresponding to the energy range expected to hit
+that strip of the screen.
 
-The dipole spreads the beam accross the screen splitting it into multiple beams
+% TODO why does the energy histogram have only 300 bins?
+% TODO why don't we do the former? i.e. just use beam matricies for x and y
+The dipole deflects the electrons horizontally 
+
+The dipole spreads the beam across the screen splitting it into multiple beams
 each with equal energies. The spreading of this beam is discretised, depending on
 the This spreading is neither linear or quadratic and in
 fact is 
 
+So to calculate the energy of an electron as a function of the horizontal
+position on the screen at which the electron is incident a number of BDSIM
+simulations were run.
 
-BDSIM was used to simulate the firing of \num{100 000} single electrons down
-the AWAKE beamline. These electrons had a square energy distribution, from
+\num{100 000} single electrons where fired down the
+AWAKE beam line.  These electrons had a square energy distribution, from
 \SIrange{0}{10}{\tera\electronvolt} and no transverse momentum meaning no
 emittance. These were used to plot 
 
-Since the effect of the dipole on the beam depends on the energy of each
-individual particle, the evolution of the beam through the dipole cannot be
-calculated reasonably using beam matrices. So, to simulate the dipole, 
+% Since the effect of the dipole on the beam depends on the energy of each
+% individual particle, the evolution of the beam through the dipole cannot be
+% calculated reasonably using beam matrices. So, to simulate the dipole, 
 
 \subsubsection{Deriving the Beam Size Function}
 
 The root mean square of the vertical beam size on the screen can be extracted
-from the resultant beam matrix \ref{}.
+from the resultant beam matrix \(\sigma_1\).  To arrive at this beam matrix, the
+transport matrix \(\mathcal{M}\) is applied to the initial beam matrix
+\(\sigma_0\). The transport matrix is the product of the transport matrices for
+each component of the spectrometer:
 
-The beam matrix element \(\sigma_{11} = \langle y^2 \rangle = \epsilon\beta\)
+\begin{equation}
+	\mathcal{M} = \mathcal{M}_d(d) \cdot \mathcal{M}_{QD}(l_2) \cdot \mathcal{M}_d(g_2)
+				  \cdot \mathcal{M}_{QF}(l_1) \cdot \mathcal{M}_d(g_1)
+\end{equation}
 
-Multiplying the transport matricies for the quadrupoles and drifts
+% TODO why is the first gap not taken into account?
+% how are the quadrupole lengths calculated?
+
+The beam matrix element \(\sigma_{11} = \langle y \rangle^2 = \epsilon\beta\)
+
+Applying the matrix multiplication results in the vertical beam size as a
+function of the horizontal screen position:
+
+\begin{equation}
+	\sigma_y^2 = \sigma_{1,11} = C^2(x)\sigma_{0,11} + 2C(x)S(x)\sigma_{0,12}
+								+ S^2(x)\sigma_{0,22}
+\end{equation}
 
 % \begin{align*}
 % 	\bm{\sigma}_1 &=
@@ -127,17 +193,17 @@ Multiplying the transport matricies for the quadrupoles and drifts
 After generating, a two dimensional histogram representing the number of
 electrons hitting the screen at each pixel the goal is to simulate the
 effectiveness of the equipment and translate this number to represent the raw
-signal that will be read off each pixel.
+signal that will be read off for each pixel.
 
 \subsection{Backgrounds}
 
-How well the measurement of the emittance is, is most dependant on the
-magnitude of the multiple sources of backgrounds as well as the reliability of
-the equipment. The following sources of error were taken into account: the
+How good the measurement of the emittance is, is most dependant on the magnitude
+of the multiple sources of backgrounds as well as the reliability of the
+equipment. The following sources of error were taken into account: the
 efficiency of the scintillator screen, the acceptance of the camera, the
 background photon density, the emittance of photoelectrons, the thermal noise,
-the microchannel plate (MCP) and the readout noise. Each source of noise is added
-to each pixel independently.
+the microchannel plate (MCP) and the readout noise. Each source of noise is
+added to each pixel independently.
 
 % TODO ask about the acceptance value.
 % do we assume scintillator emits photons evenly?
@@ -167,11 +233,17 @@ photons is multiple magnitudes larger than the expected value.
 
 The camera's photomultipliers then convert the photons of light back to an
 electrical current. This multiplies the incident number of photons by the
-quantum efficiency of the camera, \num{0.15} \cite{}. The expected number of
-thermal photoelectrons per pixel per second is expected to be \num{0.016} at
-\SI{-30}{\celsius} with \SI{16}{\celsius} cooling water and an ambient room
-temperature of \SI{16}{\celsius}. This value is typically doubles for each
-\SI{5}{\celsius} rise in temperature of the camera.
+quantum efficiency of the camera, \num{0.15}. % TODO cite
+The expected number of 
+thermal photoelectrons per pixel per second is expected to be \num{0.016}, with
+the camera running at the expected temperature of \SI{-30}{\celsius} with
+\SI{16}{\celsius} cooling water and an ambient room temperature of
+\SI{16}{\celsius}. This value is typically doubles for each \SI{5}{\celsius}
+rise in temperature of the camera. 
+At these running temperatures of the camera, only 9 photoelectrons are expected
+to be generated during the time the gate is open, which is an insignificant
+proportion in comparison to the beam signal.
+% TODO is it really that small?
 
 % TODO lookup Intensified CCD Cameras
 The microchannel plate amplifies the number of photoelectrons by \num{1442}
@@ -181,11 +253,11 @@ than generating a Poisson random number centred about this value.
 % TODO why is a Poisson number not generated for MCP?
 
 And finally, before the values of the signal is obtained, a readout noise is
-added. This backgorund is expected to add \num{7.2} readout electrons per image
+added. This background is expected to add \num{7.2} readout electrons per image
 pixel for the camera operating at \SI{1}{\mega\hertz}.
 % TODO see camera description for the readout noise
 
-\subsection{Error Calculations}
+\subsubsection{Error Calculations}
 
 Poisson statistics were used for the calculation of errors.  Once the shape of
 the incident beam on the screen was calculated the number of electrons incident
@@ -215,8 +287,16 @@ the error is given by calculating the hypotenuse of the percentage errors:
 \begin{equation}
 	\delta n= n \sqrt{
 		\left( \frac{\delta n_0}{n_0} \right)^2 +
-		\left( \frac{\delta n_\text{proc}}{n_\text{proc}} \right)^2}
+		\left( \frac{\delta \lambda_\text{proc}}{\lambda_\text{proc}} \right)^2}
 \end{equation}
+
+% TODO is ALL background is assumed to be uniform??
+Many of the errors \(\delta n_\text{proc}\) and \(\delta \lambda_\text{proc}\)
+were missing at the time of simulation. All background noises are modeled as
+uniformly distributed Poisson random numbers so the associated error on each
+value can correctly be calculated (under these assumptions) to be the square
+root of the value. % TODO you sure not the sqrt of the mean value?
+However for multiplicative processes % TODO I am unsure how these are modeled
 
 % TODO what is dn_proc ?? Why is the error dependant on the value of the
 % background which is an unknown when this is done practically. Shouldn't 
@@ -224,7 +304,15 @@ the error is given by calculating the hypotenuse of the percentage errors:
 
 % TODO simply scaling the errors up with the MCP correct?
 
-\subsection{Binning errors}
+\subsection{Calculating the Emittance}
 
+The signal received from the camera is required to be scaled back, and
+background noises removed. This is done by tracing the beam backwards and
+subtracting or dividing % TODO by the mean value etc.
 
-%TODO talk about the systematic error due to discrete binning
+The vertical beam size function used to simulate the shape of the incident
+electron beam is then fit to the measured beam sizes. The fitting is done wholly
+by CERN ROOT's \(\chi^2\) minimising fitting algorithm~\cite{Brun:1997pa}, using
+the three beam parameters \(\epsilon\), \(\beta\) and \(\gamma\) as parameters
+to be minimised.
+
