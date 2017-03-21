@@ -3,12 +3,14 @@
 
 Advancements in quantum and particle physics are primarily driven by
 experimental observations which can verify or refute previous hypotheses, or
-can provide data from which new hypotheses can be drawn. 
+can provide data from which new hypotheses can be drawn.
 % This allows us to have a deeper understanding of the universe around us.
 Particle colliders are a main source of observational data at the quantum
 scale, and can create millions of collision events every second.
+Design modifications mostly increase the luminosity of the collision in order
+to produce more data
 
-%TODO
+% TODO
 % Improvements to these colliders come in the form of increasing the luminosity
 % of the beam.  beam energy come largely in the form of increasing the energy
 % of the colliding particle beams.
@@ -20,13 +22,48 @@ scale. The largest of which, the Large Electron-Proton Collider (LEP), was
 closed down to make way for the LHC in \num{2000} after having reached a
 maximum energy of \SI{209}{\giga\electronvolt} \cite{Barate2003sz}.
 
-\begin{itemize}
-	\item reasons why lepton collisions are cleaner than protons
-	\item drawbacks of circular accelerator synchrotron radiation at LEP
-		\cite{Brandt2000xk}
-	\item ICL and CLIC proposed linear RF accelerators ten times larger
-		than SLAC
-\end{itemize}
+% % TODO improve this explanation
+% There are two main appeals of lepton--lepton colliders, both of which are due to 
+% leptons being fundamental particles. The main 
+% The precision of the centre-of-mass energy
+% measurement is improved which will improve further calculation of 
+% The cleanliness of lepton--lepton collisions is the main appeal of these
+% colliders, since they are point-like fundamental particles with a controlled
+% centre-of-mass energy.
+
+One of the drawbacks to circular accelerators,
+% for lighter particles especially,
+is the loss of a particle's energy due to synchrotron radiation.  This is the
+emittance of radiation from relativistic charged particles that are moving in a
+uniform magnetic field. The energy loss is inversely proportional to the fourth
+power of the rest mass of the particle \ref{}, meaning that electrons lose more
+energy than protons by a factor of about \num{e13} which is.  During experiments
+performed at the LEP the radiated power when running at
+\SI{100}{\giga\electronvolt} reached about \SI{18}{\mega\watt} which needs to be
+resupplied to the beam. % on-top of the power needed to accelerate the beam.
+
+% TODO im not sure how much 18MW is.
+% TODO should I talk about synchrotron radiation in the theory section?
+
+% TODO talk more about the goals and location?
+There are currently two RF linear lepton accelerator proposals, the Compact
+Linear Collider (CLIC) and the International Linear Collider (ILC) which are
+expected to reach collision energies of up to several \si{\tera\electronvolt}
+and \SI{500}{\giga\electronvolt} respectively. Both collaborations have
+recently joined efforts under the Linear Collider Collaboration.
+
+Looking further into the future
+
+continuing to increase the energy of colliding beams allows for an increasing
+number of interactions to be observed.
+
+% \begin{itemize}
+% 	\item reasons why lepton collisions are cleaner than protons
+% 	\item drawbacks of circular accelerator synchrotron radiation at LEP
+% 		\cite{Brandt2000xk}
+% 	\item ICL and CLIC proposed linear RF accelerators ten times larger
+% 		than SLAC
+% \end{itemize}
 
 % however protons are
 % not fundamental particles meaning the energy of each constituent particle is
@@ -48,26 +85,26 @@ maximum energy of \SI{209}{\giga\electronvolt} \cite{Barate2003sz}.
 % up to \SI{100}{\mega\volt\per\meter}.  This urges the development of a new
 % methods for the acceleration of particles.
 
-The CLIC and ICL are promising proposals for lepton--lepton colliders to reach
-the \si{\tera\electronvolt} scale, however
-
-continuing to increase the energy of colliding beams allows for an increasing
-number of interactions to be observed.
-
-\section{Proton Driven Plasma Wakefield Acceleration}
+\section{Plasma Wakefield Acceleration}
 
 Current radio-frequency (RF) accelerator technology is limited to an
 electromagnetic gradient of about \SI{100}{\mega\electronvolt\per\meter} due to
-RF beakdown.  The ability of plasma to sustain very large 
+material beakdown in the walls of the structure.  The ability of plasma to
+sustain very large electromagnetic fields made it a good candidate for a medium
+within which charged particles can be accelerated. In 1979, the concept of
+laser plasma acceleration was shown in simulations to be of practial use in
+accelerators and pulsers~\cite{Tajima:1979bn}. More recently, proof-of-concept
+experiments implementing laser plasma acceleration have been shown to
+accelerate electrons to the \si{\giga\electronvolt} scale in a
+\si{\centi\metre}-scale plasma cell~\cite{Lu:2006nz,Leemans:2006dx}, showing
+results that are consistent with simulations.
 
-The concept of accelerating particles in plasma was promising as plasma is able
-to sustain large electric fields.  The idea being that energy can be
-transferred to a group of charged particles by injecting them into the plasma
-wakefield that follows a high energy laser pulse or proton bunch, using the
-plasma as an energy transfer medium.  The witness bunch is then accelerated by
-the high electromagnetic gradient.
-
-\section{AWAKE}
+% The concept of accelerating particles in plasma was promising as plasma is able
+% to sustain large electric fields.  The idea being that energy can be
+% transferred to a group of charged particles by injecting them into the plasma
+% wakefield that follows a high energy laser pulse or proton bunch, using the
+% plasma as an energy transfer medium.  The witness bunch is then accelerated by
+% the high electromagnetic gradient.
 
 \subsection{Self-modulation instability}
 
@@ -156,76 +193,4 @@ after SMI had fully developed. The design of the injection method arrived at
 passing the electron beam through a narrow vacuum tube separated from the
 plasma by a thin foil. Then after \(\sim \SI{4}{\meter}\) the electrons will be
 directed into the wakefield close close behind the proton driving beam.
-
-\subsection{AWAKE}
-
-The aim of this experiment is to provide a proof of concept for proton driven
-plasma wakefield acceleration.  An overview of the experiment is as follows:
-
-The SPS will provide the \SI{400}{\giga\electronvolt} proton driver beam with a
-bunch length of \(\sigma_z = \SI{12}{\centi\meter}\) and an intensity of \(\sim
-3\times 10^{11}\) protons/bunch. This will travel down the \SI{750}{\meter}
-long CNGS transfer line and be focused to \(\sigma_{x,y} =
-\SI{200}{\micro\meter}\) and enter a \SI{10}{\meter} long Rubiduim vapor plasma
-cell with an adjustable density at the \(10^{14}\) to \(10^{15}\)
-electrons/\si{\per\centi\meter} scale.
-
-The proton driver will self modulate at the plasma wavelength \(\lambda_{pe}\)
-after being seeded by a high powered \(\approx \SI{4.5}{\tera\watt}\) laser
-pulse that is co-axial and co-propagating with the proton driver beam. This
-laser also serves the purpose of ionising the Rubidium vapor. These two beams
-need to be synchronous to within \SI{100}{\pico\second} and the focal point of
-the proton beam is required to be \(\le\SI{100}{\micro\meter}\) and
-\(\le\SI{15}{\micro\radian}\) so they are co-axial for the full length of the
-plasma cell.
-
-The electron witness beam will be created via photo-emission by an illuminating
-cathode electron source and accelerated by a 2.5 cell RF-gun and a meter long
-booster at \SI{3}{\giga\hertz}.
-
-%TODO injection
-
-\section{Project outline}
-
-% \lipsum[3-10]
-
-The development of this experiment has been heavily simulation driven.
-Simulation code developed specifically for the simulation of the plasma to be
-able to resolve for time scales of \(\omega_p^{-1}\), (where \(\omega\) is the
-frequency of the plasma wave) and length scales of down to \(c/\omega_p\), as
-existing codes were not tuned to resolve at these scales.  Different simulation
-softwares are tuned to be used for different sections of the AWAKE experiment.
-
-% I will be working on simulating the electron spectrometer using
-% BSDIM~\cite{agapov2009bdsim}, simulation software in active development,
-% designed to simulate and track particle beams passing through accelerators and
-% detectors. It is built on top of the Geant4
-% toolkit~\cite{agostinelli2003geant4} for the simulation of particles through
-% matter, which also provides the graphical user interface for a visualisation of
-% the simulation.  Event data is stored using ROOT~\cite{antcheva2011root}, an
-% advanced statistical analysis and visualisation framework designed to work for
-% petabyte scale data storage.
-
-% More specifically, I will initially be looking at calculating the emittance of
-% the accelerated electron beam using data from simulated accelerated electron
-% beams.  Recent simulations of the spectrometer used an idealised electron beam
-% \cite{deacon2016qjq} and I will be continuing this line of investigation.  The
-% electron beam profile and other properties immediately after it leaves the
-% plasma cell will be provided by separate simulations using LCODE.  This data is
-% used as input for the BDSIM simulation where we will simulate the beam passing
-% through dual focusing quadrupoles in both the horizontal and vertical planes.
-% The simulation will be able to provide all the raw data about the final state
-% of the electron beam, however, in reality we will not be able to simply query
-% the beam properties. The measurement of the energy spectrum will be carried out
-% by using a magnetic dipole downstream of the dual quadrupoles, and observing
-% the horizontal spread of the electron beam on a screen. This screen will also
-% be sumulated with BDSIM taking into account the screen resolution and detection
-% rates.
-
-% I will also be working on the modeling and simulation of the background
-% radiation from the plasma cell and other sources using real world data to help
-% build an accurate model.  All of these simultions along with real data will
-% help in finding optimal parameters for each component of the spectrometer,
-% including the strength of the quadrupoles and the dipole, the lens parameters
-% of the camera and the properties of the screen.
 

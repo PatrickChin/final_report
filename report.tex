@@ -1,15 +1,16 @@
 
-% \documentclass[a4paper,twocolumn,sort&compress]{article}
+% \documentclass[11pt,a4paper,twocolumn,sort&compress]{article}
 \documentclass[5p,twocolumn,sort&compress]{elsarticle}
 % \documentclass[final,5p,times,twocolumn,sort&compress]{elsarticle}
 % \documentclass[a4paper,12pt]{report}
 
+% \usepackage{biblatex}
 \usepackage{amsmath}
 \usepackage[binary-units=true]{siunitx}
 \usepackage{hyperref}
 \usepackage{subcaption}
 \usepackage{graphicx}
-\usepackage[hmargin=0.5in,vmargin=1in]{geometry}
+% \usepackage[hmargin={1in,0.5in},vmargin=1in]{geometry}
 \usepackage{enumitem}
 
 
@@ -29,21 +30,27 @@
 
 \begin{document}
 
-\maketitle
-\clearpage
+% \maketitle
+% \clearpage
 
-\twocolumn[
-	\begin{@twocolumnfalse}
-		\begin{abstract}
-			% In preparation for the experiments at AWAKE, simulations were used to
-			% determine to what precision the spectrometer is to be able to measure the
-			% emittance of the accelerated electron beam. A range of experimental
-			% parameters, including bunch size, energy, energy spread, emittance were
-			% tested and the degree to which these parameters effect the measurement of
-			% the emittance were determined. Systematic errors arising from the discrete
-			% pixels on the screen were found to increase the measurement emittance by
-			% \SI{1e-8}{\meter\radian}.
-		\end{abstract}
+% \twocolumn
+% 	\begin{@twocolumnfalse}
+
+\begin{frontmatter}
+	\begin{abstract}
+		In preparation for runs at AWAKE in CERN simulations of the beam
+		and measurement of the beam with the spectrometer were carried out
+		in order to find how the spectrometer behaved under changes to
+		experimental parameters.
+		% In preparation for the experiments at AWAKE, simulations were used to
+		% determine to what precision the spectrometer is to be able to measure the
+		% emittance of the accelerated electron beam. A range of experimental
+		% parameters, including bunch size, energy, energy spread, emittance were
+		% tested and the degree to which these parameters effect the measurement of
+		% the emittance were determined. Systematic errors arising from the discrete
+		% pixels on the screen were found to increase the measurement emittance by
+		% \SI{1e-8}{\meter\radian}.
+	\end{abstract}
 
 		% \begin{keyword}
 		% 	plasma wakefield \sep
@@ -52,13 +59,20 @@
 		% 	electron beam \sep
 		% 	self-modulation instability
 		% \end{keyword}
-	\end{@twocolumnfalse}
-]
+\end{frontmatter}
 
-\clearpage
-\tableofcontents
+	% \end{@twocolumnfalse}
+% ]
+
+% \twocolumn[
+% 	\begin{@twocolumnfalse}
+% 		\tableofcontents
+% 	\end{@twocolumnfalse}
+% ]
 
 \include{introduction}
+\include{awake}
+\include{spectrometer}
 \include{theory}
 \include{simulation}
 \include{results}

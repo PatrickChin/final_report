@@ -26,6 +26,15 @@ a whole.
 % got get
 % Many particles will take very similar paths along the beam line.
 
+The effect of the quadrupole and the dipole are dependant on the energy of the
+individual electrons in the beam.
+
+The dipole spreads the beam accross the screen splitting it into multiple beams
+each with equal energies. The spreading of this beam is discretised, depending on
+the This spreading is neither linear or quadratic and in
+fact is 
+
+
 BDSIM was used to simulate the firing of \num{100 000} single electrons down
 the AWAKE beamline. These electrons had a square energy distribution, from
 \SIrange{0}{10}{\tera\electronvolt} and no transverse momentum meaning no
@@ -150,7 +159,7 @@ random number.
 It is assumed that there is a uniform distribution of photons incident on the
 camera. The density of these electrons is expected to be
 \SI{1e5}{\per\meter\squared} equating to \num{0.01} background photons per
-pixel during the \SI{3e-3}{\seconds} the gate is open. This is a discrete
+pixel during the \SI{3e-3}{\second} the gate is open. This is a discrete
 value, and so is also a Poisson random number. As discussed later in
 Section~\ref{sec:results} this value is very small in comparison to the signal
 produced by the beam and will only have an effect if the density of background
@@ -217,6 +226,5 @@ the error is given by calculating the hypotenuse of the percentage errors:
 
 \subsection{Binning errors}
 
-Initial result
 
 %TODO talk about the systematic error due to discrete binning
