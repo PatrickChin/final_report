@@ -1,20 +1,20 @@
 
-% \documentclass[11pt,a4paper,twocolumn,sort&compress]{article}
-\documentclass[5p,twocolumn,sort&compress]{elsarticle}
+\documentclass[10pt,a4paper,twocolumn]{article}
+% \documentclass[5p,twocolumn,sort&compress]{elsarticle}
 % \documentclass[final,5p,times,twocolumn,sort&compress]{elsarticle}
 % \documentclass[a4paper,12pt]{report}
 
-% \usepackage{biblatex}
-% \bibliography{references}
+\usepackage{biblatex}
+\bibliography{references}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage[binary-units=true]{siunitx}
 \usepackage{hyperref}
-\usepackage{subcaption}
+\usepackage[font=small]{subcaption}
 \usepackage{graphicx}
-% \usepackage[hmargin={1in,0.5in},vmargin=1in]{geometry}
+\usepackage[hmargin={0.6in,0.5in},vmargin={0.8in,1in}]{geometry}
 % \usepackage{enumitem}
 
 
@@ -22,25 +22,29 @@
 % \sisetup{range-phrase=\kern 0.08333em--}
 
 \title{Simulating the Measurement of the\\Electron Beam Emittance at AWAKE}
-% \author{Patrick~Chin}
-\author[ucl]{P.~Chin}
-\author[ucl]{E.~Simpson~Dore}
-\author[ucl]{L.~Deacon}
-\author[ucl]{F.~Keeble}
-\author[ucl]{S.~Jolly}
-\author[ucl]{M.~Wing}
-\address[ucl]{UCL, Gower Street, London WC1E 6BT, UK}
-\date{\today}
+\author{Patrick~Chin}
+% \author[ucl]{P.~Chin}
+% \author[ucl]{E.~Simpson~Dore}
+% \author[ucl]{L.~Deacon}
+% \author[ucl]{F.~Keeble}
+% \author[ucl]{S.~Jolly}
+% \author[ucl]{M.~Wing}
+% \address[ucl]{UCL, Gower Street, London WC1E 6BT, UK}
+% \date{\today}
 
 \begin{document}
 
-% \maketitle
-% \clearpage
+\maketitle
+\thispagestyle{empty}
+\clearpage
 
-% \twocolumn
-% 	\begin{@twocolumnfalse}
+\twocolumn[
+	\begin{@twocolumnfalse}
+	\thispagestyle{empty}
+	\vspace*{18em}
 
-\begin{frontmatter}
+% \begin{frontmatter}
+
 	\begin{abstract}
 		In preparation for runs at AWAKE in CERN simulations of the beam
 		and measurement of the beam with the spectrometer were carried out
@@ -56,26 +60,28 @@
 		% \SI{1e-8}{\meter\radian}.
 	\end{abstract}
 
-		\begin{keyword}
-			plasma wakefield \sep
-			spectrometer \sep
-			emittance \sep
-			electron beam \sep
-			self-modulation instability
-		\end{keyword}
-\end{frontmatter}
+		% \begin{keyword}
+		% 	plasma wakefield \sep
+		% 	spectrometer \sep
+		% 	emittance \sep
+		% 	electron beam \sep
+		% 	self-modulation instability
+		% \end{keyword}
+% \end{frontmatter}
 
-	% \end{@twocolumnfalse}
-% ]
+	\end{@twocolumnfalse}
+]
 
 \clearpage
 \twocolumn[
 	\begin{@twocolumnfalse}
+		\thispagestyle{empty}
 		\tableofcontents
 	\end{@twocolumnfalse}
 ]
 \clearpage
 
+\pagenumbering{arabic}
 \input{introduction}
 \input{awake}
 \input{spectrometer}
@@ -85,11 +91,11 @@
 \input{conclusion}
 % \include{appendix}
 
-\clearpage
-\section*{References}
+% \clearpage
+% \section*{References}
 \bibliographystyle{ieeetr}
-\bibliography{references}
-% \printbibliography
+% \bibliography{references}
+\printbibliography
 
 \end{document}
 
