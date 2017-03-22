@@ -7,8 +7,7 @@
 
 \begin{figure}[tb]
 	\centering
-	\includegraphics[width=1\linewidth]{./output/run-pespread/pespread_0.01/n1/graph.pdf}
-	% \includegraphics{./output/run-pespread/pespread_0.01/n1/graph.pdf}
+	\includegraphics[width=\columnwidth]{./output/run-pespread/pespread_0.01/n1/graph.pdf}
 	\caption{
 		Blue line representing the reconstruction of the shape of the beam that
 		hits the screen consistently overestimates the vertical beam size. This
@@ -44,6 +43,27 @@ consistently larger than the actual beam height.
 
 \subsection{Energy Spread}
 
+\begin{figure*}[!tb]
+	\centering
+	\begin{subfigure}[t]{\columnwidth}
+		% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
+		\includegraphics{./output/run-pespread/emit_vs_pespread.pdf}
+		\caption{
+			Plot of the simulated emittance measurement against the percentage
+			spread of beam energy.
+		}
+		\label{fig:emit_pespread}
+	\end{subfigure}\hfill~
+	\begin{subfigure}[t]{\columnwidth}
+		% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
+		\includegraphics{./output/run-pespread/emitperr_vs_pespread.pdf}
+		\caption{
+		}
+		\label{fig:emitperr_pespread}
+	\end{subfigure}
+\end{figure*}
+
+
 Initially, the mean energy of the beam and energy spread of the beam were tested
 independently. Simulations for all combinations of the following energies \(E
 \in \left\{ 0.5, 1, 1.3, 2.0, 3.0 5.0\right\} \) and the following energy
@@ -56,7 +76,9 @@ of energies that hit the screen for the is from
 The estimated energy spread of the electron beam is
 \SI{0.4}{\giga\electronvolt}, 
 % TODO dipole adjustable so could have larger energies
-% still need to investigate upper range
+% TODO still need to investigate upper range
+
+
 
 It was found that the error of the measurement of the emittance 
 % TODO oh god this was the wierd one
@@ -65,6 +87,68 @@ Mean beam energies tested ranged from \SIrange{0.1}{4}{\giga\electronvolt}
 
 \subsection{Input Emittance}
 
+\begin{figure*}[!tb]
+	\centering
+	\begin{subfigure}[t]{\columnwidth}
+		\centering
+		\includegraphics{./output/run-inemit/emitr_vs_inemit.pdf}
+		\caption{
+		}
+		\label{fig:emitr_inemit}
+	\end{subfigure}%
+	~
+	\begin{subfigure}[t]{\columnwidth}
+		\centering
+		\includegraphics{./output/run-inemit/emitrperr_vs_inemit.pdf}
+		\caption{
+		}
+		\label{fig:emitrperr_inemit}
+	\end{subfigure}%
+\end{figure*}
+
+\begin{figure}[!tb]
+	\centering
+	\includegraphics[width=\columnwidth]{./output/run-inemit/emit_7e-5/n1/graph.pdf}
+	\caption{
+		Beam reconstruction for an input emittance of \num{7e-5} showing the
+		underestimation of the measured vertical beam sizes.
+	}
+	\label{fig:large_emit}
+\end{figure}
+
+
 Since the emittance 
 
 \subsection{Background Photons}
+
+
+\begin{figure*}[!t]
+	\centering
+	\begin{subfigure}[t]{\columnwidth}
+		\centering
+		\includegraphics{./output/run-bgdens/emit_vs_bgdens.pdf}
+		\caption{
+		}
+		\label{fig:emit_bgdens}
+	\end{subfigure}%
+	~
+	\begin{subfigure}[t]{\columnwidth}
+		\centering
+		\includegraphics{./output/run-bgdens/emitperr_vs_bgdens.pdf}
+		\caption{
+		}
+		\label{fig:emitperr_bgdens}
+	\end{subfigure}%
+\end{figure*}
+
+\begin{figure}[!tb]
+	\centering
+	\includegraphics[width=\columnwidth]{./output/run-bgdens/bgphotons_1e4/n6/graph.pdf}
+	\caption{
+		Beam reconstruction for a large background.
+	}
+	\label{fig:large_bg}
+\end{figure}
+
+
+
