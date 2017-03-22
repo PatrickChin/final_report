@@ -88,15 +88,47 @@ Initially, the mean energy of the beam and energy spread of the beam were tested
 independently. Simulations for all combinations of the following energies \(E
 \in \left\{ 0.5, 1, 1.3, 2.0, 3.0 5.0\right\} \) and the following energy
 spreads \(\sigma_E \in \left\{ 0.01, 0.1, 0.3, 0.4 \right\}\) were run.  These
-energies and energy spreads were chosen such that at least one standard
+energies and energy spreads were chosen such that at least one full standard
 deviation of the beam hit the screen. As Figure~\ref{fig:eofx} shows, the range
-of energies that hit the screen for the is from
-\SIrange{\sim0.28}{6}{\giga\electronvolt}.
+of energies that hit the screen for this setting of the dipole and quadrupole,
+is from \SIrange{\sim0.28}{6}{\giga\electronvolt}.
+% TODO what is the dipole set to?
+% TODO dipole adjustable so could have larger energies?
 
-The estimated energy spread of the electron beam is
-\SI{0.4}{\giga\electronvolt}, 
-% TODO dipole adjustable so could have larger energies
+The smaller the energy spread of the beam the smaller the spread of the beam
+accross the screen. Figure~\ref{fig:yoverestimate} is a plot showing the full
+spread of the beam accross the screen for a beam energy spread of
+\SI{1}{\percent}. The fewer vertical beam measurements that the function is able
+to fit to, the larger the errors of fitting will be, so the relationship between
+the errors of the measured emittance and the energy spread in
+Figure~\ref{fig:emit_pespread} is the expected result. The expected energy
+spread, \SI{0.4}{\giga\electronvolt}, translates to a percentage energy spread
+of \SI{30}{\percent} at the expected beam energy of
+\SI{1.3}{\giga\electronvolt}. By this point, the error on the measurement of the
+emittance has converged to less than a \SI{1}{\percent}.
+
+Plotting the absolute simulated measurement error against the percentage energy
+spread in Figure~\ref{fig:emit_pespread} it is clearer the manner in which the
+errors blow up for lower energy spreads. 
+% This was not the expected result. % Should I say this?
+For lower energy spreads, all measurement errors were expected to increase
+exponentially.  However this is not the case, but rather, the \emph{spread} of
+measurement errors increased exponentially, meaning that may measurement errors
+are still only a few percent of the measurement. This behaviour reflects how the
+errors for the background noise were calculated; the error associated with the
+background photons for each pixel is set to the square root of the number of
+background photons. This means the fewer the number of incident background
+photons the screen, the smaller the error. However, the error in the uncertainty
+of the measurement of the background was not taken into account then scaling the
+raw signal back into the real shape. This extra error arises from the
+uncertainty in the measurement of the background photon density when there is no
+accelerated election beam. To take this into account, this error must be added
+in quadrature to each pixel.
+
 % TODO still need to investigate upper range
+The upper ranges of this energy spread may also be investivated, however, this
+is less of a priotiry. Percentage energy spreads up to \SI{80}{\percent} were
+investigated without signs of clipping
 
 
 
@@ -116,14 +148,14 @@ Mean beam energies tested ranged from \SIrange{0.1}{4}{\giga\electronvolt}
 		\label{fig:emitr_inemit}
 \end{figure}
 
-\begin{figure}[!tb]
-	\centering
-		\centering
-		\includegraphics{./output/run-inemit/emitrperr_vs_inemit.pdf}
-		\caption{
-		}
-		\label{fig:emitrperr_inemit}
-\end{figure}
+% \begin{figure}[!tb]
+% 	\centering
+% 		\centering
+% 		\includegraphics{./output/run-inemit/emitrperr_vs_inemit.pdf}
+% 		\caption{
+% 		}
+% 		\label{fig:emitrperr_inemit}
+% \end{figure}
 
 \begin{figure}[!tb]
 	\centering
@@ -150,13 +182,14 @@ with all other parameters kept constant.
 	}
 	\label{fig:emit_bgdens}
 \end{figure}
-\begin{figure}[!t]
-	\centering
-	\includegraphics{./output/run-bgdens/emitperr_vs_bgdens.pdf}
-	\caption{
-	}
-	\label{fig:emitperr_bgdens}
-\end{figure}
+
+% \begin{figure}[!t]
+% 	\centering
+% 	\includegraphics{./output/run-bgdens/emitperr_vs_bgdens.pdf}
+% 	\caption{
+% 	}
+% 	\label{fig:emitperr_bgdens}
+% \end{figure}
 
 \begin{figure}[!tb]
 	\centering
