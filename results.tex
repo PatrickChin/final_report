@@ -2,24 +2,40 @@
 \section{Results}
 \label{sec:results}
 
-\subsection{The Output Plot}
-\label{sub:output}
+% \subsection{The Output Plot}
+% \label{sub:output}
 
-\begin{figure}[tb]
+\begin{figure}[!tb]
 	\centering
+	\includegraphics[width=\columnwidth]{./output/run-bgdens/bgphotons_1/n1/graph.pdf}
+	\caption{
+		The beam reconstruction (blue line) of a sumlation run with all the
+		expected parameter values. \(E = \SI{1.3}{\giga\electronvolt}\),
+		\(\sigma_E = \SI{0.4}{\giga\electronvolt}\), \(\epsilon =
+		\SI{1}{\milli\meter\milli\radian}\)
+	}
+	\label{fig:default}
+\end{figure}
+
+\begin{figure}[!tb]
+	\centering
+	% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
 	\includegraphics[width=\columnwidth]{./output/run-pespread/pespread_0.01/n1/graph.pdf}
 	\caption{
-		Blue line representing the reconstruction of the shape of the beam that
-		hits the screen consistently overestimates the vertical beam size. This
-		run used a small percentage energy spread of \SI{1}{\percent}. With all
-		other parameters set to their expected value.
+		The beam reconstruction, consistently overestimates the vertical
+		beam size. This run used a small percentage energy spread of
+		\SI{1}{\percent}. With all other parameters set to their expected
+		value.
 	}
 	\label{fig:yoverestimate}
 \end{figure}
 
+
 Along with the \(\chi^2\) minimised parameter values of the fit, each simulation
 generated a plot, showing the simulated, measured and fitted vertical beam size
 functions as a function of horizontal position \(x\) on the screen.
+Figure~\ref{fig:default} is the output of a run with all parameters set to their
+expected values. At these values, the measured beam sizes and the fitted
 Figure~\ref{fig:yoverestimate} is an output plot for a run with a small
 (\SI{1}{\percent}) energy spread. The solid black line is the shape of the
 simulated electron beam that hits the screen, the black points show the
@@ -41,27 +57,31 @@ effect can be seen most clearly when a very small energy spread was used as can
 be seen in Figure~\ref{fig:yoverestimate}, where the measured beam heights are
 consistently larger than the actual beam height.
 
+This systematic error is displayed in subsequent plots as a blue line, where the
+red line shows the true beam emittance and the blue line represents where the
+emittance measurement should be taking into account this error.
+
 \subsection{Energy Spread}
 
-\begin{figure*}[!tb]
+\begin{figure}[!tb]
 	\centering
-	\begin{subfigure}[t]{\columnwidth}
-		% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
-		\includegraphics{./output/run-pespread/emit_vs_pespread.pdf}
-		\caption{
-			Plot of the simulated emittance measurement against the percentage
-			spread of beam energy.
-		}
-		\label{fig:emit_pespread}
-	\end{subfigure}\hfill~
-	\begin{subfigure}[t]{\columnwidth}
-		% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
-		\includegraphics{./output/run-pespread/emitperr_vs_pespread.pdf}
-		\caption{
-		}
-		\label{fig:emitperr_pespread}
-	\end{subfigure}
-\end{figure*}
+	% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
+	\includegraphics{./output/run-pespread/emit_vs_pespread.pdf}
+	\caption{
+		Plot of the simulated emittance measurement against the percentage
+		spread of beam energy.
+	}
+	\label{fig:emit_pespread}
+\end{figure}
+
+\begin{figure}[!tb]
+	\centering
+	% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
+	\includegraphics{./output/run-pespread/emitperr_vs_pespread.pdf}
+	\caption{
+	}
+	\label{fig:emitperr_pespread}
+\end{figure}
 
 
 Initially, the mean energy of the beam and energy spread of the beam were tested
@@ -87,59 +107,56 @@ Mean beam energies tested ranged from \SIrange{0.1}{4}{\giga\electronvolt}
 
 \subsection{Input Emittance}
 
-\begin{figure*}[!tb]
+\begin{figure}[!tb]
 	\centering
-	\begin{subfigure}[t]{\columnwidth}
 		\centering
 		\includegraphics{./output/run-inemit/emitr_vs_inemit.pdf}
 		\caption{
 		}
 		\label{fig:emitr_inemit}
-	\end{subfigure}%
-	~
-	\begin{subfigure}[t]{\columnwidth}
+\end{figure}
+
+\begin{figure}[!tb]
+	\centering
 		\centering
 		\includegraphics{./output/run-inemit/emitrperr_vs_inemit.pdf}
 		\caption{
 		}
 		\label{fig:emitrperr_inemit}
-	\end{subfigure}%
-\end{figure*}
+\end{figure}
 
 \begin{figure}[!tb]
 	\centering
 	\includegraphics[width=\columnwidth]{./output/run-inemit/emit_7e-5/n1/graph.pdf}
 	\caption{
-		Beam reconstruction for an input emittance of \num{7e-5} showing the
-		underestimation of the measured vertical beam sizes.
+		Beam reconstruction for a large beam emittance of \SI{7e-5}{\meter\radian}
+		showing the underestimation of the measured vertical beam sizes.
 	}
 	\label{fig:large_emit}
 \end{figure}
 
-
-Since the emittance 
+Since the emittance is the variable to be measured, a reasonably large region
+around the expected emittance should give presice emittance measurements. The
+input beam emittance range tested was from \SIrange{1e-7}{1e-4}{\meter\radian}
+with all other parameters kept constant.
 
 \subsection{Background Photons}
 
 
-\begin{figure*}[!t]
+\begin{figure}[!t]
 	\centering
-	\begin{subfigure}[t]{\columnwidth}
-		\centering
-		\includegraphics{./output/run-bgdens/emit_vs_bgdens.pdf}
-		\caption{
-		}
-		\label{fig:emit_bgdens}
-	\end{subfigure}%
-	~
-	\begin{subfigure}[t]{\columnwidth}
-		\centering
-		\includegraphics{./output/run-bgdens/emitperr_vs_bgdens.pdf}
-		\caption{
-		}
-		\label{fig:emitperr_bgdens}
-	\end{subfigure}%
-\end{figure*}
+	\includegraphics{./output/run-bgdens/emit_vs_bgdens.pdf}
+	\caption{
+	}
+	\label{fig:emit_bgdens}
+\end{figure}
+\begin{figure}[!t]
+	\centering
+	\includegraphics{./output/run-bgdens/emitperr_vs_bgdens.pdf}
+	\caption{
+	}
+	\label{fig:emitperr_bgdens}
+\end{figure}
 
 \begin{figure}[!tb]
 	\centering
