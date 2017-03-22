@@ -5,6 +5,8 @@
 % \documentclass[a4paper,12pt]{report}
 
 % \usepackage{biblatex}
+% \bibliography{references}
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -13,21 +15,21 @@
 \usepackage{subcaption}
 \usepackage{graphicx}
 % \usepackage[hmargin={1in,0.5in},vmargin=1in]{geometry}
-\usepackage{enumitem}
+% \usepackage{enumitem}
 
 
 \sisetup{range-units=single}
-\sisetup{range-phrase=\kern 0.08333em--}
+% \sisetup{range-phrase=\kern 0.08333em--}
 
 \title{Simulating the Measurement of the\\Electron Beam Emittance at AWAKE}
-\author{Patrick~Chin}
-% \author[ucl]{P.~Chin}
-% \author[ucl]{E.~Simpson~Dore}
-% \author[ucl]{L.~Deacon}
-% \author[ucl]{F.~Keeble}
-% \author[ucl]{S.~Jolly}
-% \author[ucl]{M.~Wing}
-% \address[ucl]{UCL, Gower Street, London WC1E 6BT, UK}
+% \author{Patrick~Chin}
+\author[ucl]{P.~Chin}
+\author[ucl]{E.~Simpson~Dore}
+\author[ucl]{L.~Deacon}
+\author[ucl]{F.~Keeble}
+\author[ucl]{S.~Jolly}
+\author[ucl]{M.~Wing}
+\address[ucl]{UCL, Gower Street, London WC1E 6BT, UK}
 \date{\today}
 
 \begin{document}
@@ -54,23 +56,25 @@
 		% \SI{1e-8}{\meter\radian}.
 	\end{abstract}
 
-		% \begin{keyword}
-		% 	plasma wakefield \sep
-		% 	spectrometer \sep
-		% 	emittance \sep
-		% 	electron beam \sep
-		% 	self-modulation instability
-		% \end{keyword}
+		\begin{keyword}
+			plasma wakefield \sep
+			spectrometer \sep
+			emittance \sep
+			electron beam \sep
+			self-modulation instability
+		\end{keyword}
 \end{frontmatter}
 
 	% \end{@twocolumnfalse}
 % ]
 
-% \twocolumn[
-% 	\begin{@twocolumnfalse}
-% 		\tableofcontents
-% 	\end{@twocolumnfalse}
-% ]
+\clearpage
+\twocolumn[
+	\begin{@twocolumnfalse}
+		\tableofcontents
+	\end{@twocolumnfalse}
+]
+\clearpage
 
 \input{introduction}
 \input{awake}
@@ -81,8 +85,11 @@
 \input{conclusion}
 % \include{appendix}
 
+\clearpage
+\section*{References}
 \bibliographystyle{ieeetr}
 \bibliography{references}
+% \printbibliography
 
 \end{document}
 

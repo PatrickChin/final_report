@@ -61,39 +61,75 @@ intensity of the incident beam at each pixel on the screen.
 
 \subsubsection{BDSIM calibration}
 
+\begin{figure*}[!tb]
+	\centering
+	% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics{./figures/eofx.pdf}
+		\caption{
+			The corresponding electron energies for each vertical pixel strip.
+		}
+		\label{fig:eofx}
+	\end{subfigure}\hfill~
+	\begin{subfigure}[t]{0.49\textwidth}
+		% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
+		\includegraphics{./figures/edist.pdf}
+		\caption{
+			The number of electrons expected to hit the screen at each \(x\)
+			position. (Expected experimental parameters used)
+			% \(E=\SI{1.3}{\giga\electronvolt}\)
+			% \(\sigma_E=\SI{0.4}{\giga\electronvolt}\)
+		}
+		\label{fig:edist}
+	\end{subfigure}
+	\caption{
+		The functions \(E(x)\) and \(N_{e^-}(x)\) extracted from the BDSIM
+		callibration output data. These functions are used to calculate the
+		horizontal spread of the electrons across the screen.
+	}
+\end{figure*}
 
 The effect of the quadrupole and the dipole are dependant on the energy of the
-individual electrons in the beam. So binning each generated electron depending
-on it's energy and applying the transport matrix to each bin of electrons may
-seem to be the obvious next step. However, it is actually more useful to
-% TODO or to greatly simplify the simulation?
-work backwards, starting with each vertical strip of pixels and calculating the
-number of electrons with energy corresponding to the energy range expected to hit
-that strip of the screen.
+individual electrons in the beam.
 
-% TODO why does the energy histogram have only 300 bins?
-% TODO why don't we do the former? i.e. just use beam matricies for x and y
-The dipole deflects the electrons horizontally 
+% TODO why we needed the BDSIM runs at all
 
-The dipole spreads the beam across the screen splitting it into multiple beams
-each with equal energies. The spreading of this beam is discretised, depending on
-the This spreading is neither linear or quadratic and in
-fact is 
+% So binning each generated electron depending
+% on it's energy and applying the transport matrix to each bin of electrons may
+% seem to be the obvious next step. However, it is actually more useful to
+% % or to greatly simplify the simulation?
+% work backwards, starting with each vertical strip of pixels and calculating the
+% number of electrons with energy corresponding to the energy range expected to hit
+% that strip of the screen.
 
-So to calculate the energy of an electron as a function of the horizontal
-position on the screen at which the electron is incident a number of BDSIM
-simulations were run.
+% The dipole spreads the beam across the screen splitting it into multiple beams
+% each with equal energies. The spreading of this beam is discretised, depending on
+% the This spreading is neither linear or quadratic and in
+% fact is 
 
-\num{100 000} single electrons where fired down the
-AWAKE beam line.  These electrons had a square energy distribution, from
-\SIrange{0}{10}{\tera\electronvolt} and no transverse momentum meaning no
-emittance. These were used to plot 
+So to calculate the energy and number of an electrons as a function of the
+horizontal screen position a number of BDSIM simulations were run. \num{100 000}
+single electrons where fired down the AWAKE beam line.  These electrons had a
+square energy distribution from \SIrange{0}{10}{\tera\electronvolt}, and had a
+gaussian spacial distribution with \(\sigma_x = \sigma_y =
+\SI{6}{\milli\meter}\), and no transverse momentum meaning zero emittance. These
+were used to plot the functions in Figures~\ref{fig:etox} and \ref{fig:edist}.
+% TODO not all electrons in the 'good' energies hit the screen, right?
 
 % Since the effect of the dipole on the beam depends on the energy of each
 % individual particle, the evolution of the beam through the dipole cannot be
 % calculated reasonably using beam matrices. So, to simulate the dipole, 
 
 \subsubsection{Deriving the Beam Size Function}
+
+The dipole spreads the beam such that the
+electrons in each vertical strip of pixels can be grouped together and their
+energy approximated to be equal, as the energy spread in each strip will always
+be less than \SI{0.5}{\percent}. This was calculated from Figure~\ref{fig:eofx}
+by dividing the difference in energies between adjacent strips by the energy
+value at that strip for all strips and the maximum value was \SI{0.5}{\percent}.
+
+
 
 The root mean square of the vertical beam size on the screen can be extracted
 from the resultant beam matrix \(\sigma_1\).  To arrive at this beam matrix, the
@@ -164,32 +200,6 @@ function of the horizontal screen position:
 % \end{align*}
 
 
-% - Counting all of the backgroudn electrons as error did not increase the
-%   error by that much. I think the 
-% - why can't dipole be accounted for in the transport matricies
-% - what are the reasons for the quadrupoles?
-% - was i correct in thinking that we assumed the quadrupoles were set to focus
-% the mean beam energy? how will this work in the real spectrometer?
-% - in the out.root file (the calibration file) the primaries tree has 100 000 
-% entries whereas the prescreen sampler has 57 376. why is this?
-% - this may be a stupid question but just to clear things up, when creating
-%   the first histogram for each strip of x pixels (i.e. the histogram showing
-%   the distribution of the electrons on the screen) why is there an error
-%   along with this value? isn't this the exact number of electrons that hit
-%   the screen in this simulation and all the error should come from the
-%   background etc.
-% - is there anything important about your code that I missed in my presentation?
-
-
-
-% \begin{itemize}
-% 	\item code developed to simulate the electron beam travellilgn from the
-% 		iris of the plasma to t
-% 	\item bdsim too slow to simulate 1e9 electrons individually
-% 	\item instead 100 000 electrons were simulated in bdsim to create a
-% 		reference function between energy and final horizontal position
-% \end{itemize}
-
 After generating, a two dimensional histogram representing the number of
 electrons hitting the screen at each pixel the goal is to simulate the
 effectiveness of the equipment and translate this number to represent the raw
@@ -233,17 +243,16 @@ photons is multiple magnitudes larger than the expected value.
 
 The camera's photomultipliers then convert the photons of light back to an
 electrical current. This multiplies the incident number of photons by the
-quantum efficiency of the camera, \num{0.15}. % TODO cite
-The expected number of 
-thermal photoelectrons per pixel per second is expected to be \num{0.016}, with
-the camera running at the expected temperature of \SI{-30}{\celsius} with
-\SI{16}{\celsius} cooling water and an ambient room temperature of
-\SI{16}{\celsius}. This value is typically doubles for each \SI{5}{\celsius}
-rise in temperature of the camera. 
-At these running temperatures of the camera, only 9 photoelectrons are expected
+quantum efficiency of the camera, \num{0.15}. % TODO cite The expected number of
+thermal photoelectrons per pixel per second is expected to be
+\num{0.016}~\cite{istarscmos}, with the camera running at the expected
+temperature of \SI{-30}{\celsius} with \SI{16}{\celsius} cooling water and an
+ambient room temperature of \SI{16}{\celsius}. This value is typically doubles
+for each \SI{5}{\celsius} rise in temperature of the camera \cite{istarscmos}.
+At these running temperatures of the camera, about 9 photoelectrons are expected
 to be generated during the time the gate is open, which is an insignificant
-proportion in comparison to the beam signal.
-% TODO is it really that small?
+proportion in comparison to the beam signal, creating \num{1e7} photoelectrons
+before MCP amplification.
 
 % TODO lookup Intensified CCD Cameras
 The microchannel plate amplifies the number of photoelectrons by \num{1442}
@@ -261,12 +270,13 @@ pixel for the camera operating at \SI{1}{\mega\hertz}.
 
 Poisson statistics were used for the calculation of errors.  Once the shape of
 the incident beam on the screen was calculated the number of electrons incident
-on each pixel was given an error of the square root of the count. Two methods
-of error propagation were used depending on the nature of the process involved.
-The following processes are additive: the background photons, the thermal
-photoelectrons and the readout noise, whereas the multiplicative processes are:
-photon generation at the scintilator screen, photoelectron generation in the
-camera PMTs and the amplification of the electron signal by the MCP.
+on each pixel was given an error of the square root of the count. Two methods of
+error propagation were used depending on the nature of the process involved.
+The following processes were modeled as additive processes: background photons
+hitting the screen, the thermal electrons from the currents in the camera and
+the readout noise, whereas the multiplicative processes are: photon generation
+at the scintilator screen, photoelectron generation in the camera PMTs and the
+amplification of the electron signal by the MCP.
 
 Basic error propagation techniques were used here. For the additive processes,
 where the new value of each bin $n$ is the sum between the old bin value $n_0$
@@ -275,9 +285,9 @@ propagation of error is given by calculating the hypotenuse of the absolute
 errors:
 
 \begin{equation}
-	\delta n= \sqrt{\delta n_0^2 + \delta n_\text{proc}^2}
+	\Delta n= \sqrt{\Delta n_0^2 + \Delta n_\text{proc}^2}
 \end{equation}
-%
+
 where the error of a Poisson random number is the square root of the value.
 
 For the multiplicative processes, i.e. $n = \lambda_\text{proc}n_0 $ where
@@ -285,13 +295,25 @@ $\lambda_\text{proc}$ is the scaling factor of the process the propagation of
 the error is given by calculating the hypotenuse of the percentage errors:
 
 \begin{equation}
-	\delta n= n \sqrt{
-		\left( \frac{\delta n_0}{n_0} \right)^2 +
-		\left( \frac{\delta \lambda_\text{proc}}{\lambda_\text{proc}} \right)^2}
+	\Delta n= n \sqrt{
+		\left( \frac{\Delta n_0}{n_0} \right)^2 +
+		\left( \frac{\Delta \lambda_\text{proc}}{\lambda_\text{proc}} \right)^2}
+\end{equation}
+
+% \begin{equation}
+% 	\Delta n= n \sqrt{
+% 		\left( \frac{\Delta n_0}{n_0} \right)^2 +
+% 	\left( \frac{\sqrt{\lambda_\text{proc}n_0}}{\lambda_\text{proc}n_0} \right)^2}
+% \end{equation}
+
+\begin{equation}
+	\Delta n= n \sqrt{
+		\left( \frac{\sqrt{n_0}}{n_0} \right)^2 +
+	\left( \frac{\sqrt{n}}{n} \right)^2}
 \end{equation}
 
 % TODO is ALL background is assumed to be uniform??
-Many of the errors \(\delta n_\text{proc}\) and \(\delta \lambda_\text{proc}\)
+Many of the errors \(\Delta n_\text{proc}\) and \(\Delta \lambda_\text{proc}\)
 were missing at the time of simulation. All background noises are modeled as
 uniformly distributed Poisson random numbers so the associated error on each
 value can correctly be calculated (under these assumptions) to be the square
@@ -302,7 +324,7 @@ However for multiplicative processes % TODO I am unsure how these are modeled
 % background which is an unknown when this is done practically. Shouldn't 
 % the background be the sqrt of the expected value?
 
-% TODO simply scaling the errors up with the MCP correct?
+% TODO simply scaling the errors up with the MCP?
 
 \subsection{Calculating the Emittance}
 

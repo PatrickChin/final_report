@@ -2,20 +2,13 @@
 \section{Results}
 \label{sec:results}
 
-Along with the fitted parameter values of the fit, each simulation output a
-plot, showing the simulated, measured and fitted values for the vertical beam
-size against the horizontal position on the screen. The solid black line is the
-shape of the simulated electron beam expected to hit the screen, the black
-points with error bars are the
-% TODO this is a mess
-measured root mean squared spread of the gaussian distributed vertical beam size
-of the
-
-\subsection{Binning errors}
+\subsection{The Output Plot}
+\label{sub:output}
 
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=1\linewidth]{./output/run-pespread/pespread_0.01/n1/graph.pdf}
+	% \includegraphics{./output/run-pespread/pespread_0.01/n1/graph.pdf}
 	\caption{
 		Blue line representing the reconstruction of the shape of the beam that
 		hits the screen consistently overestimates the vertical beam size. This
@@ -24,6 +17,18 @@ of the
 	}
 	\label{fig:yoverestimate}
 \end{figure}
+
+Along with the \(\chi^2\) minimised parameter values of the fit, each simulation
+generated a plot, showing the simulated, measured and fitted vertical beam size
+functions as a function of horizontal position \(x\) on the screen.
+Figure~\ref{fig:yoverestimate} is an output plot for a run with a small
+(\SI{1}{\percent}) energy spread. The solid black line is the shape of the
+simulated electron beam that hits the screen, the black points show the
+simulated measurements of the RMS width of the fitted gausian for each vertical
+strip of pixels. The blue dashed line is the beam size function fitted to the
+points.
+
+\subsection{Binning errors}
 
 After the investigation of multiple experimental parameters, the emittance
 measurement consistently converged to a value \num{1e-8} larger than the input
@@ -37,16 +42,29 @@ effect can be seen most clearly when a very small energy spread was used as can
 be seen in Figure~\ref{fig:yoverestimate}, where the measured beam heights are
 consistently larger than the actual beam height.
 
-
 \subsection{Energy Spread}
 
-% Initially, the mean energy of the beam and energy spread of the beam were tested
-% independently.
+Initially, the mean energy of the beam and energy spread of the beam were tested
+independently. Simulations for all combinations of the following energies \(E
+\in \left\{ 0.5, 1, 1.3, 2.0, 3.0 5.0\right\} \) and the following energy
+spreads \(\sigma_E \in \left\{ 0.01, 0.1, 0.3, 0.4 \right\}\) were run.  These
+energies and energy spreads were chosen such that at least one standard
+deviation of the beam hit the screen. As Figure~\ref{fig:eofx} shows, the range
+of energies that hit the screen for the is from
+\SIrange{\sim0.28}{6}{\giga\electronvolt}.
+
+The estimated energy spread of the electron beam is
+\SI{0.4}{\giga\electronvolt}, 
+% TODO dipole adjustable so could have larger energies
+% still need to investigate upper range
+
 It was found that the error of the measurement of the emittance 
 % TODO oh god this was the wierd one
 
+Mean beam energies tested ranged from \SIrange{0.1}{4}{\giga\electronvolt}
+
 \subsection{Input Emittance}
 
-
+Since the emittance 
 
 \subsection{Background Photons}
