@@ -39,7 +39,7 @@ expected values. At these values, the measured beam sizes and the fitted
 Figure~\ref{fig:yoverestimate} is an output plot for a run with a small
 (\SI{1}{\percent}) energy spread. The solid black line is the shape of the
 simulated electron beam that hits the screen, the black points show the
-simulated measurements of the RMS width of the fitted gausian for each vertical
+simulated measurements of the RMS width of the fitted Gaussian for each vertical
 strip of pixels. The blue dashed line is the beam size function fitted to the
 points.
 
@@ -48,7 +48,7 @@ points.
 After the investigation of multiple experimental parameters, the emittance
 measurement consistently converged to a value \num{1e-8} larger than the input
 emittance. The reason for this systematic error was found to be due to the
-discritisation of the beam hitting the screen meaning that the measurement of
+discretization of the beam hitting the screen meaning that the measurement of
 the vertical beam size was consistently overestimated. Since the electrons in
 each pixel are not uniformly distributed but rather more densely distributed
 closer towards the mean value, giving rise to a systematic overestimation of the
@@ -69,7 +69,8 @@ emittance measurement should be taking into account this error.
 	\includegraphics{./output/run-pespread/emit_vs_pespread.pdf}
 	\caption{
 		Plot of the simulated emittance measurement against the percentage
-		spread of beam energy.
+		spread of the beam energy, showing emittance measurements becoming
+		unreliable at percentage energy spreads below \SI{2}{\percent}.
 	}
 	\label{fig:emit_pespread}
 \end{figure}
@@ -79,6 +80,9 @@ emittance measurement should be taking into account this error.
 	% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
 	\includegraphics{./output/run-pespread/emitperr_vs_pespread.pdf}
 	\caption{
+		Plot of the simulated emittance measurement errors against the
+		percentage spread of the beam energy, showing an exponential increase in
+		the spread of the errors as the percentage error spread is narrowed.
 	}
 	\label{fig:emitperr_pespread}
 \end{figure}
@@ -96,8 +100,8 @@ is from \SIrange{\sim0.28}{6}{\giga\electronvolt}.
 % TODO dipole adjustable so could have larger energies?
 
 The smaller the energy spread of the beam the smaller the spread of the beam
-accross the screen. Figure~\ref{fig:yoverestimate} is a plot showing the full
-spread of the beam accross the screen for a beam energy spread of
+across the screen. Figure~\ref{fig:yoverestimate} is a plot showing the full
+spread of the beam across the screen for a beam energy spread of
 \SI{1}{\percent}. The fewer vertical beam measurements that the function is able
 to fit to, the larger the errors of fitting will be, so the relationship between
 the errors of the measured emittance and the energy spread in
@@ -125,27 +129,28 @@ uncertainty in the measurement of the background photon density when there is no
 accelerated election beam. To take this into account, this error must be added
 in quadrature to each pixel.
 
-% TODO still need to investigate upper range
-The upper ranges of this energy spread may also be investivated, however, this
-is less of a priotiry. Percentage energy spreads up to \SI{80}{\percent} were
-investigated without signs of clipping
-
-
-
-It was found that the error of the measurement of the emittance 
-% TODO oh god this was the wierd one
-
-Mean beam energies tested ranged from \SIrange{0.1}{4}{\giga\electronvolt}
+The upper ranges of this energy spread may also be investigated, however, this
+is less of a priority. Percentage energy spreads up to \SI{80}{\percent} were
+investigated without signs of alterations to the measured emittance of emittance
+measurement. It is expected that as the beam energy moves outside the
+\SIrange{0.28}{6}{\giga\electronvolt} range, emittance measurements will become
+more erroneous since most of the beam will not hit the screen.
 
 \subsection{Input Emittance}
 
 \begin{figure}[!tb]
 	\centering
-		\centering
-		\includegraphics{./output/run-inemit/emitr_vs_inemit.pdf}
-		\caption{
-		}
-		\label{fig:emitr_inemit}
+	\includegraphics{./output/run-inemit/emitr_vs_inemit.pdf}
+	\caption{
+		Plot of the ratio between the measured and true emittances of the beam
+		against the true emittance of the beam.
+		% , showing good measurements of the emittance below an emittance of
+		% \SI{e-5}{\meter\radian} and a large underestimation of the emittance
+		% for larger emittances.
+		The blue line is the expected measurement value when taking into account
+		the systematic overestimation due to discrete bins.
+	}
+	\label{fig:emitr_inemit}
 \end{figure}
 
 % \begin{figure}[!tb]
@@ -167,10 +172,11 @@ Mean beam energies tested ranged from \SIrange{0.1}{4}{\giga\electronvolt}
 	\label{fig:large_emit}
 \end{figure}
 
-Since the emittance is the variable to be measured, a reasonably large region
-around the expected emittance should give presice emittance measurements. The
-input beam emittance range tested was from \SIrange{1e-7}{1e-4}{\meter\radian}
-with all other parameters kept constant.
+Since the emittance is the parameter required to be measured, a reasonably large
+region around the expected emittance should give precise emittance measurements.
+The input beam emittance range tested was from \SIrange{1e-7}{1e-4}%
+{\meter\radian} as shown in Figure~\ref{fig:emitr_inemit}.
+% , where all other parameters kept constant between each run.
 
 \subsection{Background Photons}
 
