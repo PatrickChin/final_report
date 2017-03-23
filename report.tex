@@ -12,6 +12,7 @@
 \usepackage{amssymb}
 \usepackage[binary-units=true]{siunitx}
 \usepackage{hyperref}
+\usepackage{multicol}
 \usepackage[font=small]{subcaption}
 \usepackage{graphicx}
 \usepackage[hmargin={0.6in,0.5in},vmargin={0.8in,1in}]{geometry}
@@ -30,7 +31,7 @@
 % \sisetup{range-units=single}
 % \sisetup{range-phrase=\kern 0.08333em--}
 
-\title{Simulating the Measurement of the\\Electron Beam Emittance at AWAKE}
+\title{\bfseries Simulating the Measurement of the\\Electron Beam Emittance at AWAKE}
 \author{Patrick~Chin}
 % \author[ucl]{P.~Chin}
 % \author[ucl]{E.~Simpson~Dore}
@@ -45,6 +46,7 @@
 
 \twocolumn[
 	\begin{@twocolumnfalse}
+		\vspace*{18em}
 		\maketitle
 		\thispagestyle{empty}
 		\begin{center}
@@ -61,12 +63,15 @@
 
 % \begin{frontmatter}
 
-	\begin{abstract}
-		In preparation for runs at AWAKE in CERN simulations of the beam
+	% \begin{abstract}
+		\begin{center}
+			\section*{Abstract}
+		\end{center}
+		\indent In preparation for runs at AWAKE in CERN simulations of the beam
 		and measurement of the beam with the spectrometer were carried out
 		in order to find how the spectrometer behaved under changes to
 		experimental parameters.
-	\end{abstract}
+	% \end{abstract}
 
 		% \begin{keyword}
 		% 	plasma wakefield \sep
@@ -80,6 +85,7 @@
 	\end{@twocolumnfalse}
 ]
 
+\clearpage
 \clearpage
 \twocolumn[
 	\begin{@twocolumnfalse}
@@ -99,9 +105,9 @@
 \input{conclusion}
 % \include{appendix}
 
-% \clearpage
+\clearpage
 % \section*{References}
-\bibliographystyle{ieeetr}
+% \bibliographystyle{ieeetr}
 % \bibliography{references}
 \printbibliography
 
