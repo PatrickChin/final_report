@@ -1,5 +1,5 @@
 
-% \section{Theory}
+\section{Theory}
 
 % \section{Single Particle Dynamics}
 % \label{sec:single_particle_dynamics}
@@ -39,7 +39,61 @@
 % clear that coupling effects can still be included
 % % TODO
 
-\section{Emittance}
+\subsection{Single Particle Dynamics}
+
+When working with beams of particles, it is advantagous to work in the
+coordinate system that follows the ideal path of the beam. If the beam's motion
+in the \(x\) and \(y\) planes are independent, i.e. we ignore coupling terms,
+the each particle's motion in each plane can be described by
+\begin{equation}
+	\begin{pmatrix}
+		u(z) \\ u'(z)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		C_u(z)  & S_u(z)  \\
+		\sqrt{C'_u(z)} & S'_u(z)
+	\end{pmatrix}
+	\begin{pmatrix}
+		u_0 \\ u'_0
+	\end{pmatrix}
+\end{equation}
+where \(u\) is either \(x\) or \(y\) and \(u'\) is the transverse velocity of
+the particle in the \(u\) plane. The coordinate \((u, u')\) lies in what is
+known as phase space. Using this system of matricies the drift and quadrupole
+matricies can be derived \cite{wiedemann2007particle}. The drift matrix is
+\begin{equation}
+	\mathcal{M}_D(l) =
+	\begin{pmatrix}
+		1 & l \\
+		0 & 1
+	\end{pmatrix} \\
+\end{equation}
+the focusing quadrupole matrix is
+\begin{equation}
+	\mathcal{M}_{QF}(l) =
+	\begin{pmatrix}
+		\cos\psi & \frac{1}{\sqrt{k}}\sin\psi \\
+		-\sqrt{k}\sin\psi & \cos\psi
+	\end{pmatrix} \\
+\end{equation}
+and the defocusing quadrupole matrix is
+\begin{equation}
+	\mathcal{M}_{QD}(l) =
+	\begin{pmatrix}
+		\cosh\psi & \frac{1}{\sqrt{\abs{k}}}\sinh\psi \\
+		-\sqrt{\abs{k}}\sinh\psi & \cosh\psi
+	\end{pmatrix}
+\end{equation}
+
+These transport matricies can be multiplied together resulting in the
+transformation matrix representing a path containing all accelerator components
+making it simple to follow a particle through a transport line.
+
+\subsection{Emittance}
+
+Grouping the individual particles in a particle beam, they will occupy an area
+in phase space known as the emittance.
 
 The beam emittance is a
 % quantity that describes the collective motion of all the particles in the
@@ -53,20 +107,20 @@ measure of how parallel the particles of the beam are to each other.
 % The position of each particle in Cartesian coordinates is not sufficient in
 % describing
 
-The state of a beam can be described by it's position and velocity, so each
-particle in the beam is represented in six-dimensional phase space with
-coordinates \(\left(x,p_x,y,p_y,z,p_z\right)\) where \(p\) is the momentum in
-it's respective direction. For very small 
-% TODO aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa do i need to derive this shit?
-where \(p_x\approx~p_0x'\) and
-\(p_y\approx~p_0y'\) are the transverse momenta, \(z\) is the position along the
-beam trajectory, \(p_z\) is the longitudinal momentum and \(x'\) and \(y'\) are
-the trajectory angles to the horizontal and vertical planes. Since the
-transverse momenta, and therefore \(x'\) and \(y'\), are generally quite small
-we can approximate \(\sin\left(x'\right)\approx x'\) and
-\(\sin\left(y'\right)\approx y'\). We can then project this six-dimensional
-volume into three independent two-dimensional phase planes, because in this
-approximation there is no coupling between those degrees of freedom.
+% The state of a beam can be described by it's position and velocity, so each
+% particle in the beam is represented in six-dimensional phase space with
+% coordinates \(\left(x,p_x,y,p_y,z,p_z\right)\) where \(p\) is the momentum in
+% it's respective direction. For very small 
+% % TODO aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa do i need to derive this shit?
+% where \(p_x\approx~p_0x'\) and
+% \(p_y\approx~p_0y'\) are the transverse momenta, \(z\) is the position along the
+% beam trajectory, \(p_z\) is the longitudinal momentum and \(x'\) and \(y'\) are
+% the trajectory angles to the horizontal and vertical planes. Since the
+% transverse momenta, and therefore \(x'\) and \(y'\), are generally quite small
+% we can approximate \(\sin\left(x'\right)\approx x'\) and
+% \(\sin\left(y'\right)\approx y'\). We can then project this six-dimensional
+% volume into three independent two-dimensional phase planes, because in this
+% approximation there is no coupling between those degrees of freedom.
 
 The horizontal emittance of the beam is defined by considering the ellipse in
 the \(x'-x\) phase space that contains \(95\%\) of all the
