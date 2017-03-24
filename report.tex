@@ -1,30 +1,33 @@
 
-\documentclass[10pt,a4paper,twocolumn]{article}
+\documentclass[11pt,a4paper,twocolumn]{article}
 % \documentclass[5p,twocolumn,sort&compress]{elsarticle}
 % \documentclass[final,5p,times,twocolumn,sort&compress]{elsarticle}
 % \documentclass[a4paper,12pt]{report}
 
-\usepackage{biblatex}
-\bibliography{references}
-
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage[binary-units=true]{siunitx}
-\usepackage{hyperref}
-\usepackage{multicol}
-\usepackage[font=small]{subcaption}
 \usepackage{graphicx}
-\usepackage[hmargin={0.6in,0.5in},vmargin={0.8in,1in}]{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[binary-units=true]{siunitx}
+\usepackage[colorlinks,allcolors=blue]{hyperref}
+\usepackage[font={footnotesize}]{caption}
+\usepackage[font={footnotesize}]{subcaption}
+\usepackage[hmargin={0.7in,0.6in},vmargin={0.9in,1in}]{geometry}
+
+\usepackage{biblatex}
+\bibliography{references}
+
 % \usepackage{enumitem}
 
-\usepackage{xcolor}
-\hypersetup{
-	colorlinks,
-	linkcolor={blue!50!black},
-	citecolor={blue!50!black},
-	urlcolor={blue!80!black}
-}
+% \usepackage{xcolor}
+% \hypersetup{
+% 	colorlinks,
+% 	linkcolor={blue!50!black},
+% 	citecolor={blue!50!black},
+% 	urlcolor={blue!80!black}
+% }
 
 % \renewcommand{\baselinestretch}{1.5}
 
@@ -46,13 +49,28 @@
 
 \twocolumn[
 	\begin{@twocolumnfalse}
+
+% \begin{titlepage}
+% \center
+% \textbf{\LARGE Phase Ordering Kinetics \& Infinite Rapid Quenching of the Compact KPZ Equation for Polariton Condensates}\\[5.0cm]
+% \textsc{\textit{Author: Nisha Lad}}\\[0.15cm]
+% \textsc{\textit{Supervised by Dr. Marzena Szymańska}}\\[0.15cm]
+% \textsc{\textit{\& Dr. Alejandro Zamora}}\\[5.0cm]
+% %\LARGE Project Report \\[2cm]
+% \textbf{\large MSci Physics}\\[0.1cm]
+% \large Department of Physics \& Astronomy \\[0.1cm]
+% \large University College London, U. of London \\[1cm]
+% \normalsize \today
+% \vfill
+% \end{titlepage}
+
 		\vspace*{18em}
 		\maketitle
 		\thispagestyle{empty}
 		\begin{center}
-			Supervisor: M.~Wing \\
-			% Second Supervisor: S.~Jolly
+			Supervised by Prof.~M.~Wing \\ \& Dr.~S.~Jolly \\
 		\end{center}
+
 	\end{@twocolumnfalse}
 ]
 
@@ -67,14 +85,19 @@
 		\begin{center}
 			\section*{Abstract}
 		\end{center}
-		In preparation for runs at AWAKE in CERN simulations of the beam and
-		measurement of beam parameters with a spectrometer were carried out in
-		order to investigate how the spectrometer behaves under changes to
-		experimental parameters. The energy spreads of the beam were tested and
-		a percentage energy spread of \SI{4}{\percent} is the cutoff point at
-		which measurements become reliable. Emittance values were tested and
-		amittances above \num{e-5}{\meter\radian} can be taken to be inaccurate.
-		% TODO summary of results
+
+		In preparation for runs at AWAKE in CERN, simulations of the beam and
+		measurement of beam parameters with a spectrometer were carried out.
+		This was done in order to investigate how the spectrometer behaves under
+		changes to experimental parameters. The energy spreads of the beam were
+		tested and a percentage energy spread of \SI{4}{\percent} was found to
+		be the cutoff point at which measurements become reliable. Emittance
+		values were tested and emittances above \SI{e-5}{\meter\radian} were
+		found to be inaccurate.  Background photon values up to \num{e4} times
+		the expected background were simulated, showing accurate measurements up
+		to a factor of \num{\sim4e2}, above which the measured emittance
+		deviated significantly from the true value.
+
 	% \end{abstract}
 
 		% \begin{keyword}
@@ -100,13 +123,13 @@
 \clearpage
 
 \pagenumbering{arabic}
-\input{introduction}
-\input{awake}
-\input{spectrometer}
-\input{theory}
-\input{simulation}
-\input{results}
-\input{conclusion}
+\include{introduction}
+\include{awake}
+\include{spectrometer}
+\include{theory}
+\include{simulation}
+\include{results}
+\include{conclusion}
 % \include{appendix}
 
 \clearpage

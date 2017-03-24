@@ -1,13 +1,11 @@
-
 \section{The Simulation}
 \label{sec:simulation}
 
-\begin{table}[tb]
+\begin{table}[!tbhp]
 	\centering
 	\begin{tabular}{ll}
-		\hline \hline
-		Parameter & Expected value \\
-		\hline \hline
+		\toprule
+		Parameter & Expected value \\ \midrule
 		% Screen width & \SI{1}{\meter} \\
 		% Screen height & \SI{65}{\milli\meter} \\
 		% % FOV 1.149
@@ -24,8 +22,8 @@
 		N. electrons \(N_{e^-}\) & \num{1e9} \\
 		% \(N_{e^-}\) & \num{4e8} \\
 		Bg. photons & \SI{3.415e4}{\per\meter\squared} \\
-		Thermal electrons \(N_{e^-_\text{thermal}}\) & \SI{0.016}{\per\second} \\
-		\hline
+		% Thermal electrons \(N_{e^-_\text{thermal}}\) & \SI{0.016}{\per\second} \\
+		\bottomrule
 	\end{tabular}
 	\caption{
 		The expected values for many experimental parameters have been
@@ -36,24 +34,26 @@
 	\label{tab:expected}
 \end{table}
 
-The simulation of this experiment was split into three logical parts: the
-simulation of the beam, the background and camera readout simulation, and the
-reconstruction of the beam.
+The simulation of this experiment was split into three parts: the simulation of
+the beam, the simulation of the effects of the background and camera, and the
+reconstruction of the beam to measure the parameters of the beam.
 % the following is bs
-It is designed such that each part of the code is able to act independently.
+% It is designed such that each part of the code is able to act independently.
 
 \subsection{The Electron Beam}
 
-% TODO BDSIM rly simulates a single particle at a time?
-Given enough computing power and time, the simulation of the beam exiting the
-plasma cell, passing through two quadrupoles and through a dipole could have
-been done on BDSIM~\cite{agapov2009bdsim}, a Geant4~\cite{agostinelli2003geant4}
-toolkit for simulating radiation traveling through an accelerator. This software
-package simulates a single particle at a time, updating it's position and
-velocity at each step through the accelerator, applying the effect of forces
-from all fields within the accelerator.  For beams consisting of \num{1e9}
-particles, tracking each particle individually as they travel down the beam line
-would take large amounts of time using the available computing power.
+Given enough computing power and time, the simulation of the beam from, the end
+of the plasma cell, passing through two quadrupoles and through a dipole could
+have been done on BDSIM~\cite{agapov2009bdsim}, a
+Geant4~\cite{agostinelli2003geant4} toolkit for simulating radiation traveling
+through an accelerator. This software package simulates a each particle
+individually, updating it's position and velocity at each step through the
+accelerator by applying the effect of forces from all fields within the
+accelerator.  For beams consisting of \num{\sim e9} particles, tracking each
+particle individually as they travel down the beam line would take enormous
+amounts of time and available computing power, and as many simulations were
+required to be performed this would have been impractical for obtaining any
+reasonable amount of data.
 
 A new program was written, taking advantage of beam matrices to describe the
 beam as a whole. The goal of the first part of this program is to simulate the
@@ -61,7 +61,7 @@ intensity of the incident beam at each pixel on the screen.
 
 \subsubsection{BDSIM calibration}
 
-\begin{figure*}[!tb]
+\begin{figure*}[!tbhp]
 	\centering
 	% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
 	\begin{subfigure}[t]{\columnwidth}
@@ -90,7 +90,7 @@ intensity of the incident beam at each pixel on the screen.
 \end{figure*}
 
 The effect of the quadrupole and the dipole are dependant on the energy of the
-individual electrons in the beam.
+individual electrons in the beam. This 
 
 % TODO why we needed the BDSIM runs at all
 
@@ -107,14 +107,18 @@ individual electrons in the beam.
 % the This spreading is neither linear or quadratic and in
 % fact is 
 
-So to calculate the energy and number of an electrons as a function of the
-horizontal screen position a number of BDSIM simulations were run. \num{100 000}
-single electrons where fired down the AWAKE beam line.  These electrons had a
-square energy distribution from \SIrange{0}{10}{\tera\electronvolt}, and had a
-Gaussian spacial distribution with \(\sigma_x = \sigma_y =
-\SI{6}{\milli\meter}\), and no transverse momentum meaning zero emittance. These
-were used to plot the functions in Figures~\ref{fig:etox} and \ref{fig:edist}.
-% TODO not all electrons in the 'good' energies hit the screen,
+So to calculate the density of an electrons along with their energies as a
+function of the horizontal screen position a number of BDSIM simulations were
+run. \num{e5} electrons where fired individually down the simulated AWAKE beam
+line. These electrons had a square energy distribution from \SIrange{0}{10}
+{\tera\electronvolt}, and had a Gaussian spacial distribution with \(\sigma_x =
+\sigma_y = \SI{6}{\milli\meter}\), and no transverse momentum hence zero
+emittance. This large energy range was chosen as to encompass the entire energy
+range that would hit the screen. The dipole was set to it's highest setting of
+\SI{650}{\ampere} to achieve the maximum spread of the beam on the screen.
+% TODO why use no emittance beams for calibration 
+These were used to plot the functions in Figures~\ref{fig:eofx} and
+\ref{fig:edist}.
 
 % Since the effect of the dipole on the beam depends on the energy of each
 % individual particle, the evolution of the beam through the dipole cannot be
