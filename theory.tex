@@ -92,64 +92,49 @@ making it simple to follow a particle through a transport line.
 
 \subsection{Emittance}
 
-Grouping the individual particles in a particle beam, they will occupy an area
-in phase space known as the emittance.
-
-The beam emittance is a
-% quantity that describes the collective motion of all the particles in the
-% beam, providing a
-qualitative way of describing the quality of the beam, essentially, it is a
-measure of how parallel the particles of the beam are to each other.
-% It is a conserved quantity in the absence of a \(z\) component (i.e. in the
-% direction of the beam) in the magnetic field and when the beam is not being
-% accelerated.
-
-% The position of each particle in Cartesian coordinates is not sufficient in
-% describing
-
-% The state of a beam can be described by it's position and velocity, so each
-% particle in the beam is represented in six-dimensional phase space with
-% coordinates \(\left(x,p_x,y,p_y,z,p_z\right)\) where \(p\) is the momentum in
-% it's respective direction. For very small 
-% % TODO aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa do i need to derive this shit?
-% where \(p_x\approx~p_0x'\) and
-% \(p_y\approx~p_0y'\) are the transverse momenta, \(z\) is the position along the
-% beam trajectory, \(p_z\) is the longitudinal momentum and \(x'\) and \(y'\) are
-% the trajectory angles to the horizontal and vertical planes. Since the
-% transverse momenta, and therefore \(x'\) and \(y'\), are generally quite small
-% we can approximate \(\sin\left(x'\right)\approx x'\) and
-% \(\sin\left(y'\right)\approx y'\). We can then project this six-dimensional
-% volume into three independent two-dimensional phase planes, because in this
-% approximation there is no coupling between those degrees of freedom.
-
-The horizontal emittance of the beam is defined by considering the ellipse in
-the \(x'-x\) phase space that contains \(95\%\) of all the
-particles~\cite{buon1994beam}. The area contained by this ellipse divided by
-\(\pi\) is defined as the emittance in units of \(\pi\)-mm-mrad.
-
-\begin{equation}
-	\int_{\text{ellipse}}\mathrm{d}x\mathrm{d}x' =\pi\epsilon
-\end{equation}
-
-\begin{figure}[!t]
+\begin{figure}
 	\centering
 	\includegraphics{figures/ellipse}
 	\caption{
-		Graphical representation of the relation between the twiss parameters
-		\cite{caldwell2015rkk}}
+		A representation of the relation between the Twiss parameters of
+		a beam's ellipse in phase space~\cite{wiedemann2007particle}.}
 	\label{fig:ellipse}
 \end{figure}
 
-Fig. \ref{fig:ellipse} shows a beam projected onto a two dimensional phase
-plane. The emittance can be described by the equation of the ellipse:
+Grouping the individual particles in a particle beam, they will occupy an area
+in phase space known as the emittance.  Qualitatively the emittance of a beam is
+a measure of how parallel the particles of the beam are to each other. It is a
+conserved quantity while the beam is not being acted upon by external forces.
 
+In phase space the beam of particles will usually take up an area resembling
+that of an ellipse. This is because, after a diverging or converging beam has
+traveled through an apeture, we expect particles that are further away from the
+centre of the beam to have a larger transverse momentum. This is unless the beam
+is being measured at it's waist where it is transitioning between converging and
+diverging or visa versa. Figure~\ref{fig:ellipse} shows the projection of a
+diverging beam onto a two dimensional phase plane, called the phase ellipse.
+The line that defines the ellipse is drawn such that \SI{95}{\percent} of all
+the particles in the beam are contained~\cite{buon1994beam}. The emittance is
+defined by the area of this ellipse divided by \(\pi\) in units of
+\si{\meter\radian}. Note that in general the transverse momenta, hence the slope
+of the particles in the beam, are very small so the approximation \(\sin
+u'\approx u'\) can be used.
+
+% \begin{equation}
+% 	\int_{\text{ellipse}}\mathrm{d}x\mathrm{d}x' =\pi\epsilon
+% \end{equation}
+
+The general equation of an ellipse can be used to describe the phase ellipse:
 \begin{equation}
 	\gamma x^2 + 2\alpha xx' + \beta x'^2 = \epsilon
 \end{equation}
-
-where \(\alpha\),  \(\beta\) are \(\gamma\) are ellipse parameters that
-determine the ellipse's shape and orientation and are related by this equation
-
+where \(\alpha\),  \(\beta\), \(\gamma\) and \(\epsilon\) are ellipse parameters
+that determine the ellipse's shape and orientation in phase space, where
+\(\epsilon\), the area of the ellipse is the emittance~\footnote{Often, the
+units of \(\pi\) are omitted and the emittance is given in units of
+\si{\pi\;\meter\;\radian}.} Of the four beam parameters, only three are
+independant and since \(\epsilon\) is defined as the area, the other three can
+be found to be correlated from the ellipse's geometric properties by
 \begin{equation}
 	\beta\gamma - \alpha^2 = 1
 \end{equation}
@@ -160,34 +145,34 @@ determine the ellipse's shape and orientation and are related by this equation
 % profiles captured using charge-coupled device (CCD) cameras after undergoing
 % spatial filtering.
 
-It follows that the beam matrix is
-
+By expressing this ellipses as a matrix, transformation rules have been derived
+to transport the beam~\cite{wiedemann2007particle}. The beam matrix can be
+defined by
 \begin{equation}
-	\sigma =
+	\bm{\sigma} =
 	\begin{pmatrix}
-		\sigma_{1,1} & \sigma_{1,2} \\
-		\sigma_{2,1} & \sigma_{2,2} \\
+		\sigma_{11} & \sigma_{12} \\
+		\sigma_{21} & \sigma_{22} \\
 	\end{pmatrix}
 	=
+	\epsilon
 	\begin{pmatrix}
-		\beta\epsilon^2 & -\alpha\epsilon^2 \\
-		-\alpha\epsilon^2 & \gamma\epsilon^2 \\
+		\beta & -\alpha \\
+		-\alpha & \gamma \\
 	\end{pmatrix}
 \end{equation}
+where each element describes distributions of particles in the beam as follows:
+\begin{align}
+	\sigma_{11} &= \langle x_i^2 \rangle = \epsilon\beta \\
+	\sigma_{22} &= \langle {x'}_i^2 \rangle = \epsilon\gamma \\
+	\sigma_{12} &= \langle x_i x'_i \rangle = -\epsilon\alpha
+\end{align}
 
-\noindent such that \(\epsilon = \det\sigma\), \(\sigma_{1,1}\) is the besm size
-and \(\sigma_{1,2}\) is the orientation in phase space.
+The evolution of this matrix along the beam transport line can then be described
+by
+\begin{equation}
+	\bm{\sigma}_1 = \mathcal{M}\;\bm{\sigma}_0\;\mathcal{M}^T
+	\label{eq:apply}
+\end{equation}
 
-% We can relate the beam
-% matrix after passing through quadrupoles, \(\sigma_1\), to the original beam
-% matrix, \(\sigma_0\), as follows
-
-% \begin{equation}
-% 		\sigma_{1,11} = c^2(k)\sigma_{0,11} + 2c(k)s(k)\sigma_{0,12} +
-% 		s^2(k)\sigma_{0,22}
-% \end{equation}
-
-% where we plot the final beam size \(\sigma_1,11\) against the quadrupole
-% strength \(k\).  \(\sigma_0\) is determined from the fit and it's determinant
-% will then give the emittance.
-
+% TODO measurement of the emittance 183gg (page 164)

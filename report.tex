@@ -13,6 +13,7 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{newclude}
+\usepackage{bm}
 
 \edef\restoreparindent{\parindent=\the\parindent\relax}
 \usepackage{parskip}
@@ -29,6 +30,8 @@
 
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
+\raggedbottom
 
 % \sisetup{range-units=single}
 % \sisetup{range-phrase=\kern 0.08333em--}
@@ -116,6 +119,7 @@
 \twocolumn[
 	\begin{@twocolumnfalse}
 		\thispagestyle{empty}
+		\hypersetup{allcolors=black}
 		\tableofcontents
 	\end{@twocolumnfalse}
 ]

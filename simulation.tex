@@ -141,13 +141,9 @@ Using this assumption, we are able to create one beam and transport matrix for
 electrons in each vertical stream of pixels. The root mean square of the
 vertical beam size on the screen can be extracted from the resultant beam matrix
 \(\sigma_1\). To arrive at this beam matrix, the transport matrix
-\(\mathcal{M}\) is applied to the initial beam matrix \(\sigma_0\) as follows
-\begin{equation}
-	\sigma_1 = \mathcal{M}\;\sigma_0\;\mathcal{M}^T
-\end{equation}
-
-The transport matrix is the product of the transport matrices of each component
-of the spectrometer:
+\(\mathcal{M}\) is applied to the initial beam matrix \(\sigma_0\) in
+(\ref{eq:apply}). The transport matrix is the product of the transport matrices
+of each component of the spectrometer:
 \begin{equation}
 	\begin{split}
 		\mathcal{M} = \mathcal{M}_D(d) \cdot \mathcal{M}_{QD}(l_2) \cdot
@@ -167,12 +163,12 @@ calculated in the BSDIM runs.
 
 For simplicity, it is assumed that the quadrupoles strengths \(k_1\) and \(k_2\)
 are set to values such that each quadrupole focuses at the mean energy of the
-beam, hence these variables are also functions of energy.
+beam, hence these variables are proportional to the beam's mean energy.
 
 % TODO why is the first gap not taken into account? or why it equal zero
 % how are the quadrupole lengths calculated?
 
-The beam matrix element \(\sigma_{11} = \langle y \rangle^2 = \epsilon\beta\)
+% The beam matrix element \(\sigma_{11} = \langle y \rangle^2 = \epsilon\beta\)
 
 Applying the matrix multiplication results in the vertical beam size as a
 function of the horizontal screen position:
@@ -183,51 +179,6 @@ function of the horizontal screen position:
 									&+ S^2(x)\sigma_{0,22}
 	\end{split}
 \end{equation}
-
-% \begin{align*}
-% 	\bm{\sigma}_1 &=
-% 	\epsilon
-% 	\begin{pmatrix}
-% 		\beta & -\alpha \\
-% 		-\alpha & \gamma
-% 	\end{pmatrix} =
-% 	\mathcal{M}\;\bm{\sigma}_0\;\mathcal{M}^T, \quad
-% 	% \text{where}\quad
-% 	\epsilon = \sqrt{\det{\bm{\sigma}}}, \quad
-% 	\beta\gamma-\alpha^2=1, \quad
-% 	\tan2\varphi = \tfrac{2\alpha}{\gamma-\beta}
-% 	\\[1em] %
-% 	\mathcal{M} &= \underbrace{
-% 	\begin{pmatrix}
-% 		1 & d \\
-% 		0 & 1
-% 	\end{pmatrix}}_\text{drift}
-% 	\cdot
-% 	\underbrace{
-% 	\begin{pmatrix}
-% 		\cos\varphi_1 & \tfrac{\sin\varphi_1}{\sqrt{k_1}} \\
-% 		-\sqrt{k_1}\sin\varphi_1 & \cos\varphi_1
-% 	\end{pmatrix}}_\text{vertically focusing quadrupole}
-% 	\cdot
-% 	\underbrace{
-% 	\begin{pmatrix}
-% 		1 & g_2 \\
-% 		0 & 1
-% 	\end{pmatrix}}_\text{gap}
-% 	\cdot
-% 	\underbrace{
-% 	\begin{pmatrix}
-% 		\cosh\varphi_2 & \tfrac{\sinh\varphi_2}{\sqrt{|k_2|}} \\
-% 		-\sqrt{k_2}\sinh\varphi_2 & \cosh\varphi_2
-% 	\end{pmatrix}}_\text{horizontally focusing quadrupole}
-% 	\cdot
-% 	\underbrace{
-% 	\begin{pmatrix}
-% 		1 & g_1 \\
-% 		0 & 1
-% 	\end{pmatrix}}_\text{gap}
-% \end{align*}
-
 
 After generating, a two dimensional histogram representing the number of
 electrons hitting the screen at each pixel the goal is to simulate the
@@ -288,10 +239,13 @@ before MCP amplification.
 
 % TODO lookup Intensified CCD Cameras
 The microchannel plate amplifies the number of photoelectrons by \num{1442}
-amplifying all previously added backgrounds.
-This was simulated by simply scaling the value of the bin by this value rather
-than generating a Poisson random number centred about this value.
-% TODO why is a Poisson number not generated for MCP?
+amplifying all previously added backgrounds. This was simulated by simply
+scaling the value of the bin, along with it's error, by this value rather than
+generating a Poisson random number. The modelling of this process may not be
+reflect the true nature of this process due to an uncertainty in underlying
+process, however the overall effect remains accurate. Despite this, the error
+arrising from this process is likely to scale the error as mentioned.
+% !!! TODO why is a Poisson number not generated for MCP?
 
 And finally, before the values of the signal is obtained, a readout noise is
 added. This background is expected to add \num{7.2} readout electrons per image
@@ -315,21 +269,19 @@ where the new value of each bin $n$ is the sum between the old bin value $n_0$
 and the value given by the process $n_\text{proc}$: $n=n_0+n_\text{proc}$ the
 propagation of error is given by calculating the hypotenuse of the absolute
 errors:
-
 \begin{equation}
 	\Delta n= \sqrt{\Delta n_0^2 + \Delta n_\text{proc}^2}
 \end{equation}
-
 where the error of a Poisson random number is the square root of the value.
 
 For the multiplicative processes, i.e. $n = \lambda_\text{proc}n_0 $ where
 $\lambda_\text{proc}$ is the scaling factor of the process the propagation of
 the error is given by calculating the hypotenuse of the percentage errors:
-
 \begin{equation}
 	\Delta n= n \sqrt{
 		\left( \frac{\Delta n_0}{n_0} \right)^2 +
 		\left( \frac{\Delta \lambda_\text{proc}}{\lambda_\text{proc}} \right)^2}
+	\label{eq:error_mul}
 \end{equation}
 
 % \begin{equation}
@@ -338,23 +290,19 @@ the error is given by calculating the hypotenuse of the percentage errors:
 % 	\left( \frac{\sqrt{\lambda_\text{proc}n_0}}{\lambda_\text{proc}n_0} \right)^2}
 % \end{equation}
 
-\begin{equation}
-	\Delta n= n \sqrt{
-		\left( \frac{\sqrt{n_0}}{n_0} \right)^2 +
-	\left( \frac{\sqrt{n}}{n} \right)^2}
-\end{equation}
-
 % TODO is ALL background is assumed to be uniform??
 Many of the errors \(\Delta n_\text{proc}\) and \(\Delta \lambda_\text{proc}\)
-were missing at the time of simulation. All background noises are modeled as
-uniformly distributed Poisson random numbers so the associated error on each
-value can correctly be calculated (under these assumptions) to be the square
-root of the value. % TODO you sure not the sqrt of the mean value?
-However for multiplicative processes % TODO I am unsure how these are modeled
-
-% TODO what is dn_proc ?? Why is the error dependant on the value of the
-% background which is an unknown when this is done practically. Shouldn't 
-% the background be the sqrt of the expected value?
+were unavailable at the time of simulation. All background noises are modeled as
+uniformly distributed Poisson random numbers so under these assumptions the
+associated error on each value can correctly be taken to be the square root of
+the value. % TODO you sure not the sqrt of the mean value?
+For multiplicative processes the resultant values were also Poisson random
+numbers meaning (\ref{eq:error_mul}) can be rewritten as
+\begin{equation}
+	\Delta n= n \sqrt{
+		\left( \frac{\Delta n_0}{n_0} \right)^2 +
+	\left( \frac{\sqrt{n}}{n} \right)^2}
+\end{equation}
 
 % TODO simply scaling the errors up with the MCP?
 
