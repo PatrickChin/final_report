@@ -10,26 +10,21 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{booktabs}
+\usepackage{float}
+\usepackage{newclude}
+
+\edef\restoreparindent{\parindent=\the\parindent\relax}
+\usepackage{parskip}
+\restoreparindent
+
 \usepackage[binary-units=true]{siunitx}
 \usepackage[colorlinks,allcolors=blue]{hyperref}
-\usepackage[font={footnotesize}]{caption}
-\usepackage[font={footnotesize}]{subcaption}
+\usepackage[font={small,it}]{caption}
+\usepackage[font={small,it}]{subcaption}
 \usepackage[hmargin={0.7in,0.6in},vmargin={0.9in,1in}]{geometry}
 
 \usepackage{biblatex}
 \bibliography{references}
-
-% \usepackage{enumitem}
-
-% \usepackage{xcolor}
-% \hypersetup{
-% 	colorlinks,
-% 	linkcolor={blue!50!black},
-% 	citecolor={blue!50!black},
-% 	urlcolor={blue!80!black}
-% }
-
-% \renewcommand{\baselinestretch}{1.5}
 
 % \sisetup{range-units=single}
 % \sisetup{range-phrase=\kern 0.08333em--}
@@ -123,13 +118,13 @@
 \clearpage
 
 \pagenumbering{arabic}
-\include{introduction}
-\include{awake}
-\include{spectrometer}
-\include{theory}
-\include{simulation}
-\include{results}
-\include{conclusion}
+\include*{introduction}
+\include*{awake}
+\include*{spectrometer}
+\include*{theory}
+\include*{simulation}
+\include*{results}
+\include*{conclusion}
 % \include{appendix}
 
 \clearpage
