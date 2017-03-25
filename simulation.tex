@@ -49,6 +49,8 @@ reconstruction of the beam to measure the parameters of the beam.
 
 \subsection{The Electron Beam}
 
+% TODO explain LCODE electrons (cite)
+
 Given enough computing power and time, the simulation of the beam from, the end
 of the plasma cell, passing through two quadrupoles and through a dipole could
 have been done on BDSIM~\cite{agapov2009bdsim}, a
@@ -251,7 +253,7 @@ generating a Poisson random number. The modelling of this process may not be
 reflect the true nature of this process due to an uncertainty in underlying
 process, however the overall effect remains accurately simulated. Despite this,
 the error arising from this process is likely to scale the error as mentioned.
-% !!! TODO why is a Poisson number not generated for MCP?
+% TODO why is a Poisson number not generated for MCP?
 
 And finally, before the values of the signal is obtained, a readout noise is
 added. This background is expected to add \num{7.2} readout electrons per image
@@ -315,14 +317,23 @@ without knowledge of the error of the scaling factor.
 \subsection{Calculating the Emittance}
 
 The signal received from the camera is required to be scaled back to represent
-the real beam size on the screen.  The effect of background and scaling
-processes are reverted in the reverse order of their application. This is a
-trivial process done simply by scaling the value 
-% !!! TODO
+the real beam size on the screen. The effect of additive backgrounds and scaling
+processes are reverted in the reverse order of their application arriving at a
+measured value for the number of electrons that hit the screen at each pixel.
 
-The vertical beam size function used to simulate the shape of the incident
-electron beam is then fit to the measured beam sizes. The fitting is done wholly
-by CERN ROOT's \(\chi^2\) minimising fitting algorithm~\cite{Brun:1997pa}, using
-the three beam parameters \(\epsilon\), \(\beta\) and \(\gamma\) as parameters
-to be minimised.
+To calculate the vertical beam size for each pixel strip, a Gaussian function is
+fitted to the vertical beam profile using CERN ROOT's \(\chi^2\) minimising
+fitting algorithm~\cite{Brun:1997pa}.
+% TODO gaussian function
+The root mean square of the fitted
+Gaussian is then calculated for each strip to obtain the vertical beam size at
+each horizontal position on the screen. These points are displayed as the black
+points in the beam reconstruction plots in Figures~\ref{fig:default}
+and~\ref{fig:yoverestimate}.
+
+Finally, the vertical beam size function, previously used to simulate the shape
+of the incident electron beam, is then fitted to the measured beam sizes. Again,
+the fitting is done wholly using ROOT's \(\chi^2\) minimising fitting algorithm,
+where the three beam parameters \(\epsilon\), \(\beta\) and \(\gamma\) as
+parameters to be minimised.
 
