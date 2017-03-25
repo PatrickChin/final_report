@@ -1,44 +1,6 @@
 
 \section{Theory}
 
-% \section{Single Particle Dynamics}
-% \label{sec:single_particle_dynamics}
-
-% To derive the method used in simulating the beam, it is usefull to start with
-% Maxwell's equations. These can be used to describe the motion for charged
-% particles under the magnetic fields of accelerator components, such as dipoles
-% and quadrupoles. The solutions to these equations become increasingly complex at
-% higher perturbations so it is usefull to devise a coordinate system other than
-
-% Specifying a coorindate system such that the origin follows the ideal path of
-% the particle beam, rather than a coordinate system about an arbitary fixed
-% point we are able to describe the state of a patricle by
-
-% \begin{equation}
-% 	\begin{pmatrix}
-% 		x(z) \\ x'(z) \\
-% 		y(z) \\ y'(z) \\
-% 	\end{pmatrix}
-% 	=
-% 	\begin{pmatrix}
-% 		C_x(z)  & S_x(z)  & 0 & 0 \\
-% 		C'_x(z) & S'_x(z) & 0 & 0 \\
-% 		0 & 0 & C_y(z)  & S_y(z)  \\
-% 		0 & 0 & C'_y(z) & S'_y(z) \\
-% 	\end{pmatrix}
-% 	\begin{pmatrix}
-% 		x_0 \\ x'_0 \\
-% 		y_0 \\ y'_0 \\
-% 	\end{pmatrix}
-% \end{equation}
-
-% where \(x\) and \(y\) are deviations form the centre of the beam along their
-% respective axis and \(x'\) and \(y'\) are the transverse momenta of the
-% particle perpendicular to \(z\), the direction of travel of the beam.
-% Transformations in either the $x$ or $y$ plane are independent, however, it is
-% clear that coupling effects can still be included
-% % TODO
-
 \subsection{Single Particle Dynamics}
 
 When working with beams of particles, it is advantagous to work in the

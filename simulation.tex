@@ -1,44 +1,51 @@
 \section{The Simulation}
 \label{sec:simulation}
 
-\begin{table}%[!tbhp]
+\begin{table*}[!tb]
 	\centering
 	\begin{tabular}{ll}
-		\toprule
-		Parameter & Expected value \\ \midrule
-		% Screen width & \SI{1}{\meter} \\
-		% Screen height & \SI{65}{\milli\meter} \\
+		\toprule \midrule
+		Parameter & Value \\ \midrule \midrule
+
+		Screen and Camera \\ \midrule
+		Screen width & \SI{1}{\meter} \\
+		Screen height & \SI{65}{\milli\meter} \\
 		% % FOV 1.149
-		% Horizontal pixels & 1850 \\
+		Horizontal pixels & 1850 \\
 		% % optical point spread function set to 0?
 		% % width of x sensor? \SI{25e-3}{\metre}
-		% Screen efficiency & \SI{5000}{photons\per electron}\\
-		% Camera acceptance & \num{1.5e-5} \\
-		Emittance \(\epsilon\) & \SI{1e-6}{\meter\radian} \\
-		% \(\beta\) & 1 \\ % TODO units
-		% \(\alpha\) & 0.5 \\ % TODO units
-		Mean energy \(\bar E\) & \SI{1.3}{\giga\electronvolt} \\
-		Energy spread \(\sigma_E\) & \SI{0.4}{\giga\electronvolt} \\
-		N. electrons \(N_{e^-}\) & \num{1e9} \\
+		Screen efficiency & \SI{5000}{photons\per electron}\\
+		Camera acceptance & \num{1.5e-5} \\
+		Camera MCP Gain & 1442 \\
+		Camera quantum efficiency & 0.15 \\
+
+		\midrule
+		Accelerated electron beam \\ \midrule
+		Emittance \(\left(\epsilon\right)\) & \SI{1e-6}{\meter\radian} \\
+		% Beam size parameter \(\left(\beta\right)\) & \SI{1}{\meter} \\
+		\(\beta\) & \SI{1}{\meter} \\
+		\(\alpha\) & \SI{0.5}{\radian} \\
+		Mean energy \(\left(\bar{E}\right)\) & \SI{1.3}{\giga\electronvolt} \\
+		Energy spread \(\left(\sigma_E\right)\) & \SI{0.4}{\giga\electronvolt} \\
+		Electrons/bunch \(\left(N_{e^-}\right)\) & \num{1e9} \\
 		% \(N_{e^-}\) & \num{4e8} \\
-		Bg. photons & \SI{3.415e4}{\per\meter\squared} \\
+		Background photon density & \SI{3.415e4}{\per\meter\squared} \\
 		% Thermal electrons \(N_{e^-_\text{thermal}}\) & \SI{0.016}{\per\second} \\
 		\bottomrule
 	\end{tabular}
 	\caption{
 		The expected values for many experimental parameters have been
-		calculated. It should be noted that these values are missing error
-		values. It can be assumed that the error on each value can be given by
-		half the least significant digit.
+		calculated.
+		% It should be noted that these values are missing error
+		% values. It can be assumed that the error on each value can be given by
+		% half the least significant digit.
 	}
 	\label{tab:expected}
-\end{table}
+\end{table*}
 
 The simulation of this experiment was split into three parts: the simulation of
 the beam, the simulation of the effects of the background and camera, and the
 reconstruction of the beam to measure the parameters of the beam.
-% the following is bs
-% It is designed such that each part of the code is able to act independently.
 
 \subsection{The Electron Beam}
 
@@ -61,10 +68,10 @@ intensity of the incident beam at each pixel on the screen.
 
 \subsubsection{BDSIM Calibration}
 
-\begin{figure*}%[!tbhp]
+\begin{figure*}[!tb]
 	\centering
-	% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
 	\begin{subfigure}[t]{\columnwidth}
+		% \includegraphics[width=1\linewidth]{./figures/edist.pdf}
 		\includegraphics{./figures/eofx.pdf}
 		\caption{
 			Electron energies corresponding to the horizontal screen position
@@ -90,7 +97,6 @@ intensity of the incident beam at each pixel on the screen.
 	}
 \end{figure*}
 
-% TODO why we needed the BDSIM runs at all
 The effect of the quadrupole and the dipole are dependant on the energy of the
 individual electrons in the beam.  So to calculate the density of an electrons
 along with their energies as a function of the horizontal screen position a
@@ -238,13 +244,13 @@ proportion in comparison to the beam signal, creating \num{1e7} photoelectrons
 before MCP amplification.
 
 % TODO lookup Intensified CCD Cameras
-The microchannel plate amplifies the number of photoelectrons by \num{1442}
-amplifying all previously added backgrounds. This was simulated by simply
-scaling the value of the bin, along with it's error, by this value rather than
+The microchannel plate amplifies the number of photoelectrons by \num{1442},
+also amplifying all previously added backgrounds as well. This was simulated by
+scaling the value of the bin, and it's error, by \num{1442} rather than
 generating a Poisson random number. The modelling of this process may not be
 reflect the true nature of this process due to an uncertainty in underlying
-process, however the overall effect remains accurate. Despite this, the error
-arrising from this process is likely to scale the error as mentioned.
+process, however the overall effect remains accurately simulated. Despite this,
+the error arising from this process is likely to scale the error as mentioned.
 % !!! TODO why is a Poisson number not generated for MCP?
 
 And finally, before the values of the signal is obtained, a readout noise is
@@ -290,7 +296,6 @@ the error is given by calculating the hypotenuse of the percentage errors:
 % 	\left( \frac{\sqrt{\lambda_\text{proc}n_0}}{\lambda_\text{proc}n_0} \right)^2}
 % \end{equation}
 
-% TODO is ALL background is assumed to be uniform??
 Many of the errors \(\Delta n_\text{proc}\) and \(\Delta \lambda_\text{proc}\)
 were unavailable at the time of simulation. All background noises are modeled as
 uniformly distributed Poisson random numbers so under these assumptions the
@@ -303,14 +308,17 @@ numbers meaning (\ref{eq:error_mul}) can be rewritten as
 		\left( \frac{\Delta n_0}{n_0} \right)^2 +
 	\left( \frac{\sqrt{n}}{n} \right)^2}
 \end{equation}
-
+where the full statistical error of the generated value is taken into account
+without knowledge of the error of the scaling factor.
 % TODO simply scaling the errors up with the MCP?
 
 \subsection{Calculating the Emittance}
 
-The signal received from the camera is required to be scaled back, and
-background noises removed. This is done by tracing the beam backwards and
-subtracting or dividing % TODO by the mean value etc.
+The signal received from the camera is required to be scaled back to represent
+the real beam size on the screen.  The effect of background and scaling
+processes are reverted in the reverse order of their application. This is a
+trivial process done simply by scaling the value 
+% !!! TODO
 
 The vertical beam size function used to simulate the shape of the incident
 electron beam is then fit to the measured beam sizes. The fitting is done wholly

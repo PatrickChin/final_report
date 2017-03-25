@@ -3,7 +3,7 @@
 \label{sec:results}
 % {{{
 
-\begin{figure*}%[!htbp]
+\begin{figure*}[!tb]
 	\begin{minipage}[t]{\columnwidth}
 			\centering
 			\includegraphics[width=\columnwidth]{./output/run-bgdens/bgphotons_1/n1/graph.pdf}
@@ -25,6 +25,79 @@
 				value.
 			}
 			\label{fig:yoverestimate}
+	\end{minipage}
+\end{figure*}
+
+\begin{figure*}[!tb]
+	\begin{minipage}[t]{\columnwidth}
+		\centering
+		\includegraphics{./output/run-pespread/emit_vs_pespread.pdf}
+		\caption{
+			Plot of the simulated emittance measurement against the percentage
+			spread of the beam energy, showing emittance measurements becoming
+			unreliable at percentage energy spreads below \SI{2}{\percent}.
+		}
+		\label{fig:emit_pespread}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{\columnwidth}
+		\centering
+		\includegraphics{./output/run-pespread/emitperr_vs_pespread.pdf}
+		\caption{
+			Plot of the simulated emittance measurement errors against the
+			percentage spread of the beam energy, showing an exponential increase in
+			the spread of the errors as the percentage error spread is narrowed.
+		}
+		\label{fig:emitperr_pespread}
+	\end{minipage}
+\end{figure*}
+
+\begin{figure*}[!tb]
+	\begin{minipage}[t]{\columnwidth}
+		\centering
+		\includegraphics{./output/run-inemit/emitr_vs_inemit.pdf}
+		\caption{
+			Plot of the ratio between the measured and true emittances of the beam
+			against the true emittance of the beam.
+			% , showing good measurements of the emittance below an emittance of
+			% \SI{e-5}{\meter\radian} and a large underestimation of the emittance
+			% for larger emittances.
+			The blue line is the expected measurement value when taking into account
+			the systematic overestimation due to discrete bins.
+		}
+		\label{fig:emitr_inemit}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{\columnwidth}
+		\centering
+		% \includegraphics{./output/run-inemit/emitrperr_vs_inemit.pdf}
+		\includegraphics[width=\columnwidth]{./output/run-inemit/emit_7e-5/n1/graph.pdf}
+		\caption{
+			Beam reconstruction for a large beam emittance of
+			\SI{7e-5}{\meter\radian} showing the underestimation of the measured
+			vertical beam sizes.
+		}
+		\label{fig:large_emit}
+	\end{minipage}
+\end{figure*}
+
+\begin{figure*}[!tb]
+	\begin{minipage}[t]{\columnwidth}
+		\centering
+		\includegraphics{./output/run-bgdens/emit_vs_bgdens.pdf}
+		\caption{
+			Plot of the measured beam emittance against a factor of the expected
+			background density of \SI{3.415e4}{photons\per\meter\squared}
+		}
+		\label{fig:emit_bgdens}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{\columnwidth}
+		\centering
+		% \includegraphics{./output/run-bgdens/emitperr_vs_bgdens.pdf}
+		\includegraphics[width=\columnwidth]{./output/run-bgdens/bgphotons_1e4/n6/graph.pdf}
+		\caption{
+			Beam reconstruction for a background \num{1e4} times the expected
+			background photon density.
+		}
+		\label{fig:large_bg}
 	\end{minipage}
 \end{figure*}
 
@@ -63,29 +136,6 @@ emittance measurement should be taking into account this error.
 
 \subsection{Energy Spread}
 % {{{
-
-\begin{figure*}%[!htbp]
-	\begin{minipage}[t]{\columnwidth}
-		\centering
-		\includegraphics{./output/run-pespread/emit_vs_pespread.pdf}
-		\caption{
-			Plot of the simulated emittance measurement against the percentage
-			spread of the beam energy, showing emittance measurements becoming
-			unreliable at percentage energy spreads below \SI{2}{\percent}.
-		}
-		\label{fig:emit_pespread}
-	\end{minipage}\hfill
-	\begin{minipage}[t]{\columnwidth}
-		\centering
-		\includegraphics{./output/run-pespread/emitperr_vs_pespread.pdf}
-		\caption{
-			Plot of the simulated emittance measurement errors against the
-			percentage spread of the beam energy, showing an exponential increase in
-			the spread of the errors as the percentage error spread is narrowed.
-		}
-		\label{fig:emitperr_pespread}
-	\end{minipage}
-\end{figure*}
 
 Initially, the mean energy of the beam and energy spread of the beam were tested
 independently. Simulations for all combinations of the following energies \(E
@@ -139,33 +189,7 @@ more erroneous since most of the beam will not hit the screen.
 \subsection{Input Emittance}
 % {{{
 
-\begin{figure*}%[!htbp]
-	\begin{minipage}[t]{\columnwidth}
-		\centering
-		\includegraphics{./output/run-inemit/emitr_vs_inemit.pdf}
-		\caption{
-			Plot of the ratio between the measured and true emittances of the beam
-			against the true emittance of the beam.
-			% , showing good measurements of the emittance below an emittance of
-			% \SI{e-5}{\meter\radian} and a large underestimation of the emittance
-			% for larger emittances.
-			The blue line is the expected measurement value when taking into account
-			the systematic overestimation due to discrete bins.
-		}
-		\label{fig:emitr_inemit}
-	\end{minipage}\hfill
-	\begin{minipage}[t]{\columnwidth}
-		\centering
-		% \includegraphics{./output/run-inemit/emitrperr_vs_inemit.pdf}
-		\includegraphics[width=\columnwidth]{./output/run-inemit/emit_7e-5/n1/graph.pdf}
-		\caption{
-			Beam reconstruction for a large beam emittance of
-			\SI{7e-5}{\meter\radian} showing the underestimation of the measured
-			vertical beam sizes.
-		}
-		\label{fig:large_emit}
-	\end{minipage}
-\end{figure*}
+
 
 Since the emittance is the parameter required to be measured, a reasonably large
 region around the expected emittance should give precise emittance measurements.
@@ -195,27 +219,7 @@ parameters in Figure~\ref{fig:default}.
 \subsection{Background Photons}
 % {{{
 
-\begin{figure*}%[!htbp]
-	\begin{minipage}[t]{\columnwidth}
-		\centering
-		\includegraphics{./output/run-bgdens/emit_vs_bgdens.pdf}
-		\caption{
-			Plot of the measured beam emittance against a factor of the expected
-			background density of \SI{3.415e4}{photons\per\meter\squared}
-		}
-		\label{fig:emit_bgdens}
-	\end{minipage}\hfill
-	\begin{minipage}[t]{\columnwidth}
-		\centering
-		% \includegraphics{./output/run-bgdens/emitperr_vs_bgdens.pdf}
-		\includegraphics[width=\columnwidth]{./output/run-bgdens/bgphotons_1e4/n6/graph.pdf}
-		\caption{
-			Beam reconstruction for a background \num{1e4} times the expected
-			background photon density.
-		}
-		\label{fig:large_bg}
-	\end{minipage}
-\end{figure*}
+
 
 This background noise is the most likely source of error to change during and
 between runs, as all other sources of error arise from intrinsic properties of
@@ -237,20 +241,24 @@ at a background factor of \num{e7}.
 The reasoning for a larger spread in the measured emittance values comes from
 the background drowning out the signal, that is, the fluctuations of the
 randomly generated background between the pixels become large enough to distort
-the shape of the image on the screen. The amount by which the image is distored
-is not taken into account by the error bars suggesting that error in the
-background was not completely accounted for.
+the shape of the image on the screen.  The amount by which the image is distored
+is not taken into account by the error bars in Figure~\ref{fig:emit_bgdens},
+suggesting that error in the background was not completely accounted for. The
+absence of this error is propagated to the error of the emittance measurement,
+as can be seen in Figure~\ref{fig:emit_bgdens}, as the error significanly
+underestimates the fluctuations in the measurement.  However, these error bars
+can be inferred from the spread of the measurements since for lower backgrounds
+all ten runs are closely grouped and for higher backgrounds there is a clear
+spread of measurement values.
 
 % TODO explain why measured emittance is always underestimated
 % The reasoning behind the emittance measurement being underestimated
 % arises from the background affecting a shallower signal more than a sharp one.
+Figure~\ref{fig:emit_bgdens}, also shows that the emittance measurement is
+consistently underestimated for large backgrounds. This can be explained by the
+method of calculating the beam size for a single strip of pixels.
+% TODO pol0+gaus
 
-From both plots in Figure~\ref{fig:emit_bgdens} and Figure~\ref{fig:large_bg} it
-is clear that the error bars do not take into account the fluctuations in the
-measured emittance between runs, or fluctuations in the measured vertical beam
-size. Error bars in Figure~\ref{fig:emit_bgdens} can be inferred from the spread
-of the measurements since for lower backgrounds all ten runs are closely grouped
-and for higher backgrounds there is a clear spread of measurement values.
 
 % }}}
 
