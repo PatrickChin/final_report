@@ -1,9 +1,5 @@
 
 \documentclass[final,11pt,a4paper,twocolumn,oneside]{article}
-% \documentclass[11pt,a4paper]{article}
-% \documentclass[5p,twocolumn,sort&compress]{elsarticle}
-% \documentclass[final,5p,times,twocolumn,sort&compress]{elsarticle}
-% \documentclass[a4paper,12pt]{report}
 
 \usepackage[utf8]{inputenc}
 
@@ -48,34 +44,11 @@
 \title{\bfseries Simulating the Measurement of the\\
 Electron Beam Emittance at AWAKE}
 \author{Patrick~Chin}
-% \author[ucl]{P.~Chin}
-% \author[ucl]{E.~Simpson~Dore}
-% \author[ucl]{L.~Deacon}
-% \author[ucl]{F.~Keeble}
-% \author[ucl]{S.~Jolly}
-% \author[ucl]{M.~Wing}
-% \address[ucl]{UCL, Gower Street, London WC1E 6BT, UK}
-% \date{\today}
 
 \begin{document}
 
 \twocolumn[
 	\begin{@twocolumnfalse}
-
-% \begin{titlepage}
-% \center
-% \textbf{\LARGE Phase Ordering Kinetics \& Infinite Rapid Quenching of the Compact KPZ Equation for Polariton Condensates}\\[5.0cm]
-% \textsc{\textit{Author: Nisha Lad}}\\[0.15cm]
-% \textsc{\textit{Supervised by Dr. Marzena Szymańska}}\\[0.15cm]
-% \textsc{\textit{\& Dr. Alejandro Zamora}}\\[5.0cm]
-% %\LARGE Project Report \\[2cm]
-% \textbf{\large MSci Physics}\\[0.1cm]
-% \large Department of Physics \& Astronomy \\[0.1cm]
-% \large University College London, U. of London \\[1cm]
-% \normalsize \today
-% \vfill
-% \end{titlepage}
-
 		\vspace*{15em}
 		\maketitle
 		\thispagestyle{empty}
@@ -87,7 +60,6 @@ Electron Beam Emittance at AWAKE}
 			\vspace*{6em}
 			Supervised by Prof.~M.~Wing \\ \& Dr.~S.~Jolly \\
 		\end{center}
-
 	\end{@twocolumnfalse}
 ]
 
@@ -99,13 +71,9 @@ Electron Beam Emittance at AWAKE}
 	\thispagestyle{empty}
 	\vspace*{15em}
 
-% \begin{frontmatter}
-	% \begin{abstract}
-
 		\begin{center}
 			\section*{Abstract}
 		\end{center}
-
 		In preparation for experiments at AWAKE in CERN, simulations of the beam
 		and measuring of the beam's parameters were carried out.  This was done
 		in order to investigate how the measurement of the emittance of the beam
@@ -120,17 +88,6 @@ Electron Beam Emittance at AWAKE}
 		from the true value. Improvements and limitations of the simulation due
 		to assumptions made are also discussed.
 
-	% \end{abstract}
-
-		% \begin{keyword}
-		% 	plasma wakefield \sep
-		% 	spectrometer \sep
-		% 	emittance \sep
-		% 	electron beam \sep
-		% 	self-modulation instability
-		% \end{keyword}
-% \end{frontmatter}
-
 	\end{@twocolumnfalse}
 ]
 
@@ -144,7 +101,7 @@ Electron Beam Emittance at AWAKE}
 ]
 \clearpage
 
-\pagenumbering{arabic}
+% \pagenumbering{arabic}
 \include*{introduction}
 \include*{awake}
 \include*{spectrometer}
