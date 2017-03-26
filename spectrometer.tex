@@ -3,25 +3,38 @@
 \label{sec:spectrometer}
 
 There are two main goals the spectrometer is expected to fulfill. The first is
-to measure the mean energy and energy spread of the beam as it is this
+to measure the mean energy and energy spread of the beam, as it is this
 measurement that determines the success of the AWAKE project, i.e.  whether or
 not the electrons were accelerated up to the desired
-\SI{10}{\giga\electronvolt} displaying large EM gradients of
-\SI{1}{\giga\volt\per\meter}.
+\SI{1.3}{\giga\electronvolt}, which would demonstrate the use of large EM
+gradients of \SI{\sim1}{\giga\volt\per\meter}. The second goal it to measure the
+quality of the beam which can quantitatively be described by it's emittance
+which is defined in Section~\ref{sec:emittance}.
 
-second goal to measure quality and shape of the beam
 
-% !!! TODO
+\subsection{Design Overview}
 
-\subsection{Design}
+A C-shaped dipole magnet with a maximum setting of \SI{650}{\ampere} is placed
+downstream of the plasma cell in order to separate the electron and proton
+beams, as well as measure the energy and energy spread of the beam by deflecting
+electrons onto a \SI{65}{\milli\meter} high by \SI{1}{\meter} wide scintillator
+screen. The amount by which each electron is deflected by the dipole, and hence
+it's horizontal position on the screen, can be directly related to it's energy.
+To improve the ratio of the electron beam signal to the background noise, a
+quadrupole doublet is placed upstream of the dipole.  This will focus electrons
+that are at a certain energy onto the screen and under or over--focus electrons
+that are at different energies. This will result in a vertical spread of
+electrons that are tightly focused at the horizontal position on the screen
+pertaining to the mean energy of the beam, gradually becoming less focused and
+more spread out further from this horizontal position. The emittance of the
+beam cannot be directly be measured since it is a measure of both the beam size
+and beam divergence. However from the shape of the beam on the screen and an
+understanding of the effects of the quadrupole and the dipole, a function can be
+derived and used to extract the beam's emittance.
 
-dipole used to separate the electrons from the protons and generate a spread of
-electrons in
-
-quadrupole doublet focuses the beam in a particular energy. this increases the
-particle density on the screen improving the signal to noise ratio.
-
-due to large amounts of radiation, the CCD camera (Andor iStar 340T) is located
-17~m from the tunnel. light will be reflected onto the camera using a series of
-mirrors
+Due to large amounts of background radiation in the main tunnel, the intensified
+CCD camera (Andor iStar 340T) will be situated \SI{17}{\meter} from the screen
+in an adjacent tunnel. Light from the screen will be reflected onto the camera
+using a series of mirrors~\cite{deacon2016qjq} and the goals of the spectrometer
+will be achieved by analysing the signal received by this camera.
 

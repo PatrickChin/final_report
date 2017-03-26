@@ -2,7 +2,7 @@
 \section{Plasma Wakefield Acceleration}
 
 Current RF accelerator technology is limited to an electromagnetic gradient of
-about \SI{100}{\mega\electronvolt\per\meter} due to material breakdown in the
+about \SI{100}{\mega\volt\per\meter} due to material breakdown in the
 walls of the structure.  The ability of plasma to sustain very large
 electromagnetic fields makes it a good candidate for a medium within which
 charged particles can be accelerated. The concept being that the plasma can act
@@ -10,7 +10,7 @@ as an energy transfer medium, removing energy from a driver beam, such as a
 laser or a proton beam, and transferring it to a bunch of charged leptons.  As
 the driver beam travels through the plasma cell, it leaves an oscillating
 electromagnetic field in it's wake. The beam to be accelerated (the witness
-beam) is injected ahead of a propagating electromagnetic field as shown in
+beam) is injected ahead of a propagating electromagnetic wave as shown in
 Figure~\ref{fig:phase-b} where it is accelerated under the electromagnetic
 gradient.  In 1979, the concept of laser plasma acceleration was shown in
 simulations to be of practical use in accelerators and
@@ -24,60 +24,61 @@ simulations.
 \subsection{The AWAKE Project}
 
 Simulations of plasma wakefield accelerators driven by proton beams were
-carried out in \num{2009}~\cite{Caldwell2008ak}, showed the high energy transfer
+carried out in \num{2009}~\cite{Caldwell2008ak}, showing the high energy transfer
 efficiency between a driver proton bunch and an electron witness bunch. In these
 simulations, a \SI{1}{\tera\electronvolt} proton beam drove the wakefield in a
 \SI{400}{\meter} long plasma cell, which accelerated a
-\SI{10}{\giga\electronvolt} electron beam to \SI{650}{\giga\electronvolt}.  The
+\SI{10}{\giga\electronvolt} electron beam to \SI{650}{\giga\electronvolt},
+displaying graidents of over \SI{1}{\giga\volt\per\meter} which is about ten
+times larger than current accelerators.  The
 AWAKE project is a proof-of-concept experiment for proton driven plasma
 wakefield acceleration with the goal of accelerating \SI{15}{\mega\electronvolt}
 electrons up to \SI{\sim1.3}{\giga\electronvolt} over a distance of
 \SI{10}{\meter}. Later, aiming to reach \SI{10}{\giga\electronvolt} in the same
-distance. This will demonstate the use of electromagnetic gradients that are
-about 10 times larger than current RF acceleratrs.
+distance, demonstrating electromagnetic gradients in the
+\si{\giga\volt\per\meter} scale as displayed in the simulation.
 
-A few challenges arose in the design of this experiment and are discussed next.
-
+A few challenges arose during the design of this experiment.
 
 \subsubsection{Proton Bunch Length}
 
 The first challenge in the development of this accelerator was getting the
 length of the proton driver bunch small enough such that it is able to create
-resonant waves in the plasma. Typical proton bunches such as those produced by
-the CERN Super Proton Synchrotron (SPS), have lengths of \(\sim
-\SI{10}{\centi\meter}\) which alone, cannot create strong plasma waves at the
-required wavelength in the \si{\milli\meter} scale as the Fourier component of
-the proton beam at the plasma frequency is negligible.
-Simulations~\cite{kumar2010self} on the compression of these proton bunches to
-such small distances, show that
-reducing the longitudinal phase volume blows up the transverse phase volume,
-resulting in a diverging beam with a large emittance. % TODO is this correct?
-An alternative method would be to split up the proton bunch into a number of
-micro-bunches to be simultaneously decelerated, all of which contribute energy
-to the wakefield.
+resonant waves in the plasma, where the plasma wavelength \(\lambda_{pe} \approx
+\SI{1.26}{\milli\meter}\).  Typical proton bunches, such as those produced by
+the CERN Super Proton Synchrotron (SPS), have lengths of
+\SI{\sim10}{\centi\meter} which alone, cannot create strong plasma waves at the
+required wavelength, as the Fourier component of the proton beam at the plasma
+frequency is negligible. 
+
+Simulations on the compression of these proton bunches to such small
+lengths~\cite{kumar2010self}, show that reducing the longitudinal phase volume
+blows up the transverse phase volume, resulting in a diverging beam with a large
+emittance.  An alternative method would be to split up the proton bunch into a
+number of micro--bunches to be simultaneously decelerated, all of which
+contribute energy to the wakefield.  This means that a \SI{10}{\centi\meter}
+proton bunch will need to be split into \num{\sim100} micro--bunches in order to
+be able to drive the wake.
+
 
 The splitting of the proton beam can be achieved by using an instability
-between the beam and the plasma arises from the mutual
+between the beam and the plasma which arises from the mutual
 amplification of the rippling of the beam radius and the plasma wave, known as
-self-modulated instability (SMI). This
+self--modulated instability (SMI). This
 instability tends to destroy the plasma wave as the amplification focuses and
 defocuses various parts of the beam. 
-% This problem was solved
 However, by seeding the SMI with a short electron bunch~\cite{lotov2013natural},
 a laser pulse~\cite{siemon2013laser} or a sharp cut in the bunch
 profile~\cite{kumar2010self}, a single mode of the oscillating plasma wave and
-beam rippling will be promoted while others will be suppressed. This produces
-% including the strongest
-% competing modes, the hosing modes
-% \cite{vieira2014hosing} and produce
-well-separated micro-bunches of protons with of a short enough length to induce
-a plasma wave at the resonance frequency of the plasma.  The plasma wavelength
-is \(\lambda_{pe} \approx \SI{1.26}{\milli\meter}\) meaning that the
-\SI{10}{\centi\meter} proton bunch will have to be split into \(\sim 100\)
-micro-bunches in order to be able to drive the wake. 
+beam rippling will be promoted while other modes%
+, including the strongest
+competing modes, the hosing modes~\cite{vieira2014hosing}
+will be suppressed.
+This produces
+well--separated micro--bunches of protons with of a short enough length to induce
+a plasma wave at the resonance frequency of the plasma. 
 
-
-\subsubsection{Uniform-Density Plasma Cell}
+\subsubsection{Uniform Density Plasma Cell}
 
 \begin{figure}[!tb]
 	\centering
@@ -114,31 +115,31 @@ micro-bunches in order to be able to drive the wake.
 \end{figure}
 
 
-All proton micro-bunches contribute to the wakefield, and only if the plasma
+All proton micro--bunches contribute to the wakefield, and only if the plasma
 density is uniform, will the contribution of each bunch be coherent. Incoherent
-proton bunches
-will cause alterations in the plasma wakefield meaning the electron bunches
-arrive at the wrong phase of the plasma
+proton bunches will cause alterations in the plasma wakefield meaning that the
+electron bunches will arrive at the wrong phase of the plasma wave's
 oscillation. An increase in the plasma density will shorten the plasma
-wavelength causing the electron bunch to crest plasma wave it was riding and
-fall into the defocusing phase of the plasma wave as shown in
-Figure~\ref{fig:phase-a}. A decrease in the plasma density will increase the
-plasma wavelength causing the plasma wave to fall further behind the electron
-bunch meaning the electron bunch to fall into the trough of the plasma wave
-resulting in a deceleration of the electron beam \ref{fig:phase-c}. The electron
-beam must be in the region of length \(\lambda_{pe}/4\) between the defocusing
-and decelerating phases of the plasma wave in order to be appropriately
-accelerated. These effects also affect the proton beam, however due to their
-large longitudinal momentum these effects are significantly larger for the
-electrons.
+wavelength, causing it to gain on the electron bunch allowing electrons to crest
+plasma wave it was riding and fall into the defocusing phase of the plasma wave
+as shown in Figure~\ref{fig:phase-a}. A decrease in the plasma density will
+increase the plasma wavelength causing the plasma wave to fall further behind
+the electron bunch meaning the electron bunch to fall into the trough of the
+plasma wave, resulting in a deceleration of the electron beam as shown in
+Figure~\ref{fig:phase-c}.  The electron beam must be in the region, of length
+\(\lambda_{pe}/4\), between the defocusing and decelerating phases of the plasma
+wave in order to be appropriately accelerated. These effects also affect the
+proton beam, however due to their large longitudinal momentum, are influenced to
+a much lesser degree.
 
-This requirement of the plasma limits the plasma selection to being uniform
+This requirement of the plasma, limits the plasma selection to being uniform
 rubidium vapor, ionised by a co-propagating laser pulse \cite{oz2014novel,
 oz2014bja}. Rubidium was chosen due to it's low ionization potential and heavy
 atomic mass. A heavy element is required to minimize the movement of the
-plasma's nuclei which causes adverse effects on the plasma's behaviour
-\cite{vieira2012nj,vieira2014bqa}. The Rubiduim vapor is kept in thermodynamic
-equilibrium at a constant temperature and volume.
+plasma's nuclei, which causes adverse effects to the plasma's
+behaviour~\cite{vieira2012nj,vieira2014bqa}. The Rubiduim vapor is kept in
+thermodynamic equilibrium at a constant temperature and volume in order to keep
+it's density as uniform as possible.
 
 
 \subsubsection{Injection of the Witness Beam}
@@ -147,12 +148,14 @@ equilibrium at a constant temperature and volume.
 Due to SMI, the shape of the drive beam changes in the plasma and for the first
 four meters, the difference between the phase velocity of the wakefield and the
 proton beam velocity is quite large and this will effect the electron beam in
-the same manner as having a non uniform plasma, detailed above. To avoid this
-problem it was suggested that the electrons could be injected into the plasma
-after SMI had fully developed. The design of the injection method arrived at
+the same manner as having a non uniform plasma. To avoid this
+problem it was suggested that the electrons be injected into the plasma
+after SMI had fully developed at \SI{\sim4}{\meter} into the plasma.
+The design of the injection method eventually arrived at
 passing the electron beam through a narrow vacuum tube separated from the
-plasma by a thin foil. Then after \(\sim \SI{4}{\meter}\) the electrons will be
-directed into the wakefield close close behind the proton driving beam.
+plasma by a thin foil, then after the required distance the electrons will be
+directed into the wakefield close behind the many proton bunches driving the
+wakefield.
 
 \subsubsection{AWAKE Overview}
 
@@ -160,29 +163,29 @@ The SPS will provide a \SI{400}{\giga\electronvolt} proton beam with a bunch
 length of \(\sigma_z = \SI{12}{\centi\meter}\) and an intensity of \(\sim
 \num{3e11}\) protons per bunch. This will travel down the \SI{750}{\meter} long
 proton beam line, previously used for the CERN Neutrinos to Gran Sasso project
-(CNGS), and will be focused infront of the plasma cell to a horizontal and
-vertical beam size of \(\sigma_{x,y} = \SI{200}{\micro\meter}\). This beam will
+(CNGS), and will be focused in--front of the plasma cell to a horizontal and
+vertical beam size of \(\sigma_{x,y} = \SI{200}{\micro\meter}\). It will
 then enter the \SI{10}{\meter} long Rubiduim vapor plasma cell with an
 adjustable density at the \num{e14} to \num{e15} \si{electrons\per\centi\meter}
 scale.
-
 The proton driver will self modulate at the plasma wavelength \(\lambda_{pe}\)
-after being seeded by a high powered \(\approx \SI{4.5}{\tera\watt}\) laser
-pulse that is co-axial and co-propagating with the proton driver beam. This
+after being seeded by a high powered \SI{\sim4.5}{\tera\watt} laser
+pulse that is co--axial and co--propagating with the proton driver beam. This
 laser also serves the purpose of ionising the Rubidium vapor to create the
-plasma. For these beams to be co-axial for the full length of the plasma cell,
+plasma. For these beams to be co--axial for the full length of the plasma cell,
 they need to be synchronous to within \SI{100}{\pico\second} and the size of the
 focal point of the proton beam is required to be \(\le\SI{100}{\micro\meter}\)
 and \(\le\SI{15}{\micro\radian}\)
 
 % TODO cite 
-The electron witness beam will be created via photo-emission by an illuminating
-cathode electron source. It will then be accelerated by a 2.5 cell RF-gun and a
-meter long booster at both at \SI{3}{\giga\hertz}.  This will accelerate the
-beam up to \SI{20}{\mega\electronvolt} and an energy spread of
-\SI{0.5}{\percent}.
-% !! TODO describe electron and laser beamlines
-
+The electron witness beam will be created via photo--emission by an illuminating
+cathode electron source. It will then be accelerated by a \num{2.5} cell RF--gun
+and a meter long booster at both at \SI{3}{\giga\hertz}.  This will accelerate
+the beam up to \SI{20}{\mega\electronvolt} and an energy spread of
+\SI{0.5}{\percent}, before it is injected into the plasma cell to be further
+accelerated to \SI{\sim1.3}{\giga\electronvolt}.  The accelerated beam will
+then exit the \SI{10}{\meter} long plasma cell to be analysed by the
+spectrometer.
 
 % \section{Project outline}
 

@@ -2,62 +2,71 @@
 \section{Introduction}
 
 Advancements in quantum and particle physics are primarily driven by
-experimental observations which can verify or refute previous hypotheses, or can
-provide data from which new hypotheses can be drawn, with the overall goal
-of helping us have a deeper understanding of the universe around us.
-Particle colliders are a main source of observational data at the quantum scale,
-and can create millions of collision events every second.  Design modifications
-to these colliders mostly increase the luminosity of the collision in order to
-increase the collision rate and produce more data.  This report however, focuses
-on a design modification aimed at increasing the energy of the colliding beams.
-Increasing the energy of particle colliders will give the ability to investigate
-energy regions yet to be reached and allow the observation of interactions that
-only happen at higher energies. These interactions may give insight into
-questions pertaining to the unification of the fundamental forces.
+experimental observations, which can verify or refute previous hypotheses, or
+can provide data from which new hypotheses can be drawn.  The overall goal is to
+gain a deeper understanding of the universe around us.  Particle colliders are a
+main source of observational data at the quantum scale, and can create millions
+of collision events every second.  Design modifications to these colliders
+mostly increase the luminosity of the colliding beams in order to produce more
+data.  This report however, focuses on a design modification aimed at increasing
+the energy of the colliding beams. This will allow the investigation of energy
+regions that have yet to be reached, thus allowing the observation of particle
+interactions that only happen at higher energies. These interactions may give
+insight into questions pertaining to the unification of the fundamental forces.
+% or possibly give us more questions to be answered.
 
-Proton--proton beam energies at the Large Hadron Collider (LHC) have recently
-reached energies of \SI{13}{\tera\electronvolt} \cite{CMS:2015bta}, whereas
-lepton--lepton colliders have yet to reach the \si{\tera\electronvolt} energy
-scale. The largest lepton--lepton collider, the Large Electron-Proton Collider
-(LEP), was closed down to make way for the LHC in \num{2000} after having
-reached a maximum energy of \SI{209}{\giga\electronvolt} \cite{Barate2003sz}.
+Beams at the Large Hadron Collider (LHC) operated at centre-of-mass energies of
+\SI{7}{\tera\electronvolt} and \SI{8}{\tera\electronvolt}~\cite{Flechl2015xxa}
+in the quest to find the Higgs Boson, and proton--proton centre-of-mass energies
+at CERN have recently reached \SI{13}{\tera\electronvolt}~\cite{CMS:2015bta}.
+Lepton--lepton colliders, however, have yet to reach the \si{\tera\electronvolt}
+energy milestone. The largest lepton--lepton collider, the Large
+Electron-Proton Collider (LEP), was closed down to make way for the LHC in
+\num{2000} after having reached a maximum energy of
+\SI{209}{\giga\electronvolt}~\cite{Barate2003sz}.
 
 The appeal of colliding leptons over composite particles such as protons arises
 from the fact that leptons are fundamental point-like particles. Their
-centre-of-mass energy is more easily determined and produce a much cleaner
-environment on collision, allowing for easier analysis of data as less
-interactions need to be taken into account.
-% TODO improve this explanation
+centre-of-mass energy can be more accurately determined and collisions between
+leptons produce a much cleaner environment, allowing for easier observation of
+the resultant particles and simpler analysis of the data.
+% since less interactions need to be taken into account.  TODO improve this
+% explanation
 
-One of the drawbacks to circular accelerators,
-% for lighter particles especially,
-is the loss of a particle's energy due to synchrotron radiation.  This is the
-emittance of radiation from relativistic charged particles that are moving in a
-uniform magnetic field. The energy loss is inversely proportional to the fourth
-power of the rest mass of the particle \cite{sokolov1966synchrotron}, meaning
-that electrons lose more energy than protons by a factor of about \num{e13}
-which is.  During experiments performed at the LEP the radiated power when
-running at \SI{100}{\giga\electronvolt} reached about \SI{18}{\mega\watt} which
-needs to be resupplied to the beam.
+% One of the drawbacks to circular accelerators, for lighter particles
+% especially,
+Circular accelerators, such as LEP, have a major drawback when accelerating
+leptons, and that is the loss of a particle's energy due to synchrotron
+radiation, which limits the focusing of electron beams~\cite{Oide1988ru}.  This
+is the emittance of radiation from relativistic charged particles that are
+moving in a uniform magnetic field. The energy loss is inversely proportional to
+the fourth power of the rest mass of the particle \cite{sokolov1966synchrotron},
+meaning that electrons lose more energy than protons by a factor of about
+\num{e13} which is one of the main reasons why protons are being collided at
+CERN rather than electrons. During experiments performed at the LEP the radiated
+power when running at \SI{100}{\giga\electronvolt} reached about
+\SI{18}{\mega\watt} which needs to be resupplied to the beam just to keep it's
+circular trajectory.
 % on-top of the power needed to accelerate the beam.
-% TODO ^
-% TODO I'm not sure how much 18MW is.
-% TODO should I talk about synchrotron radiation in the theory section?
+% TODO ^ TODO I'm not sure
+% how much 18MW is.  TODO should I talk about synchrotron radiation in the
+% theory section?
 
 % TODO talk more about the goals and location?
-This continuous loss of energy can be overcome by creating linear particle
-accelerators. There are currently two radio-frequency (RF) linear lepton--lepton
-accelerator proposals, the Compact Linear Collider (CLIC)~\cite{Linssen2012hp}
-and the International Linear Collider (ILC)~\cite{Behnke2013xla} which are
-expected to reach collision energies of up to several \si{\tera\electronvolt}
-and \SI{500}{\giga\electronvolt} respectively. Both collaborations have recently
-joined efforts under the Linear Collider Collaboration. The continuous scaling
-of linear accelerators to higher and higher energies, with current RF technology
-requires greater accelerator lengths reaching lengths extending to the
-\SI{100}{\kilo\meter} scale. Building accelerators of this scale is deemed
+This problem can be overcome by creating linear particle accelerators. There are
+currently two radio-frequency (RF) linear lepton--lepton accelerator proposals,
+the Compact Linear Collider (CLIC)~\cite{Linssen2012hp} and the International
+Linear Collider (ILC)~\cite{Behnke2013xla} which are expected to reach collision
+energies of up to several \si{\tera\electronvolt} and
+\SI{500}{\giga\electronvolt} respectively.
+% Both collaborations have recently joined efforts under the Linear Collider
+% Collaboration~\cite{}.
+With current RF technology, the continuous scaling of linear lepton--lepton
+accelerators to higher and higher energies, requires greater accelerator lengths
+extending to the \SI{100}{\kilo\meter} scale for collisions in the
+\si{\tera\electronvolt} scale. Building accelerators of this scale is deemed
 impractical for most situations due to geographical and financial limitations.
 This urges the development of new technologies in order to continue pushing the
-energy frontier of particle accelerators while scaling down the accelerator
-lengths.
+energy frontier of particle accelerators while scaling down their lengths.
 
 

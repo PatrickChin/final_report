@@ -20,15 +20,15 @@
 
 \usepackage[binary-units=true]{siunitx}
 \usepackage[colorlinks,allcolors=blue]{hyperref}
-\usepackage[font={small,it}]{caption}
-\usepackage[font={small,it}]{subcaption}
+\usepackage[font={footnotesize}]{caption}
+\usepackage[font={footnotesize}]{subcaption}
 \usepackage[hmargin={0.7in,0.6in},vmargin={0.9in,1in}]{geometry}
 
 \edef\restoreparindent{\parindent=\the\parindent\relax}
 \usepackage{parskip}
 \restoreparindent
 
-\usepackage{biblatex}
+\usepackage[natbib=true,backend=biber,sorting=none]{biblatex}
 \bibliography{references}
 
 \usepackage{mathtools}
@@ -36,6 +36,7 @@
 
 \interfootnotelinepenalty=10000
 \raggedbottom
+% \raggedright
 
 \setcounter{topnumber}{8}
 \setcounter{bottomnumber}{8}
@@ -75,7 +76,7 @@ Electron Beam Emittance at AWAKE}
 % \vfill
 % \end{titlepage}
 
-		\vspace*{18em}
+		\vspace*{15em}
 		\maketitle
 		\thispagestyle{empty}
 		\vspace*{5em}
@@ -90,13 +91,13 @@ Electron Beam Emittance at AWAKE}
 	\end{@twocolumnfalse}
 ]
 
-\clearpage
-\includepdf{declaration.pdf}
+% \clearpage
+% \includepdf{declaration.pdf}
 
 \twocolumn[
 	\begin{@twocolumnfalse}
 	\thispagestyle{empty}
-	\vspace*{18em}
+	\vspace*{15em}
 
 % \begin{frontmatter}
 	% \begin{abstract}
@@ -105,17 +106,19 @@ Electron Beam Emittance at AWAKE}
 			\section*{Abstract}
 		\end{center}
 
-		In preparation for runs at AWAKE in CERN, simulations of the beam and
-		measurement of beam parameters with a spectrometer were carried out.
-		This was done in order to investigate how the spectrometer behaves under
-		changes to experimental parameters. The energy spreads of the beam were
-		tested and a percentage energy spread of \SI{4}{\percent} was found to
-		be the cutoff point at which measurements become reliable. Emittance
-		values were tested and emittances above \SI{e-5}{\meter\radian} were
-		found to be inaccurate.  Background photon values up to \num{e4} times
-		the expected background were simulated, showing accurate measurements up
-		to a factor of \num{\sim4e2}, above which the measured emittance
-		deviated significantly from the true value.
+		In preparation for experiments at AWAKE in CERN, simulations of the beam
+		and measuring of the beam's parameters were carried out.  This was done
+		in order to investigate how the measurement of the emittance of the beam
+		behaves under changes to experimental parameters.  The energy spread of
+		the beam was investigated and a minimum percentage energy spread of
+		\SI{4}{\percent} was found to be the cutoff point at which measurements
+		become reliable. Emittance values were investigated and emittances above
+		\SI{e-5}{\meter\radian} were found to be measured inaccurately.
+		Background photon values up to \num{e4} times the expected background
+		were simulated, showing accurate measurements up to a factor of
+		\num{\sim4e2}, above which the measured emittance deviated significantly
+		from the true value. Improvements and limitations of the simulation due
+		to assumptions made are also discussed.
 
 	% \end{abstract}
 
@@ -132,7 +135,6 @@ Electron Beam Emittance at AWAKE}
 ]
 
 \clearpage
-\clearpage
 \twocolumn[
 	\begin{@twocolumnfalse}
 		\thispagestyle{empty}
@@ -142,7 +144,7 @@ Electron Beam Emittance at AWAKE}
 ]
 \clearpage
 
-% \pagenumbering{arabic}
+\pagenumbering{arabic}
 \include*{introduction}
 \include*{awake}
 \include*{spectrometer}
@@ -153,9 +155,6 @@ Electron Beam Emittance at AWAKE}
 % \include{appendix}
 
 \clearpage
-% \section*{References}
-% \bibliographystyle{ieeetr}
-% \bibliography{references}
 \printbibliography
 
 \end{document}
