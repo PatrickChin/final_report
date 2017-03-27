@@ -122,16 +122,17 @@ measurement consistently converged to a value \num{1e-8} larger than the input
 emittance. The reason for this systematic error was found to be due to the
 discretization of the beam hitting the screen meaning that the measurement of
 the vertical beam size was consistently overestimated. Since the electrons in
-each pixel are not uniformly distributed but rather more densely distributed
-closer towards the mean value, giving rise to a systematic overestimation of the
-vertical beam size of up to two times the vertical size of the pixel. This
-effect can be seen most clearly when a very small energy spread was used as can
-be seen in Figure~\ref{fig:yoverestimate}, where the measured beam heights are
-consistently larger than the actual beam height.
+each pixel are not uniformly distributed, but rather, more densely distributed
+closer towards the mean value, this gives rise to a systematic overestimation of
+the vertical beam size of up to two times the vertical size of the pixel. This
+effect can be seen most clearly when a very small energy spread was used as in
+Figure~\ref{fig:yoverestimate}, where the measured beam heights are consistently
+larger than the actual beam height.
 
-This systematic error is displayed in subsequent plots as a blue line, where the
-red line shows the true beam emittance and the blue line represents where the
-emittance measurement should be taking into account this error.
+This systematic error is displayed in subsequent emittance versus parameter
+plots as a blue line, where the red line shows the true beam emittance and the
+blue line represents where the emittance measurement should be taking into
+account this error.
 % }}}
 
 \subsection{Energy Spread}
@@ -139,7 +140,7 @@ emittance measurement should be taking into account this error.
 
 Initially, the mean energy of the beam and energy spread of the beam were tested
 independently. Simulations for all combinations of the following energies \(E
-\in \left\{ 0.5, 1, 1.3, 2.0, 3.0 5.0\right\} \) and the following energy
+\in \left\{ 0.5, 1, 1.3, 2.0, 3.0, 5.0\right\} \) and the following energy
 spreads \(\sigma_E \in \left\{ 0.01, 0.1, 0.3, 0.4 \right\}\) were run.  These
 energies and energy spreads were chosen such that at least one full standard
 deviation of the beam hit the screen. As Figure~\ref{fig:eofx} shows, the range
@@ -149,7 +150,7 @@ is from \SIrange{\sim0.28}{6}{\giga\electronvolt}.
 
 The smaller the energy spread of the beam the smaller the spread of the beam
 across the screen. Figure~\ref{fig:yoverestimate} is a plot showing the full
-spread of the beam across the screen for a beam energy spread of
+spread of the beam across the screen for a small beam energy spread of
 \SI{1}{\percent}. The fewer vertical beam measurements that the function is able
 to fit to, the larger the errors of fitting will be, so the relationship between
 the errors of the measured emittance and the energy spread in
@@ -159,30 +160,34 @@ of \SI{30}{\percent} at the expected beam energy of
 \SI{1.3}{\giga\electronvolt}. By this point, the error on the measurement of the
 emittance has converged to less than a \SI{1}{\percent}.
 
-Plotting the absolute simulated measurement error against the percentage energy
-spread in Figure~\ref{fig:emit_pespread} it is clearer the manner in which the
-errors blow up for lower energy spreads. 
+Plotting the percentage error of the simulated measurement against the
+percentage energy spread in Figure~\ref{fig:emit_pespread} it is clearer the
+manner in which the errors blow up for lower energy spreads. 
 % This was not the expected result. % Should I say this?
 For lower energy spreads, all measurement errors were expected to increase
 exponentially.  However this is not the case, but rather, the \emph{spread} of
-measurement errors increased exponentially, meaning that may measurement errors
+measurement errors increased exponentially, meaning that many measurement errors
 are still only a few percent of the measurement. This behaviour reflects how the
-errors for the background noise were calculated; the error associated with the
+errors of the background noise were calculated; the error associated with the
 background photons for each pixel is set to the square root of the number of
-background photons. This means the fewer the number of incident background
-photons the screen, the smaller the error. However, the error in the uncertainty
-of the measurement of the background was not taken into account then scaling the
+background photons, meaning the fewer the number of incident background photons
+on the screen, the smaller the error. However, the error in the uncertainty of
+the measurement of the background was not taken into account then scaling the
 raw signal back into the real shape. This extra error arises from the
-uncertainty in the measurement of the background photon density when there is no
-accelerated election beam. To take this into account, this error must be added
-in quadrature to each pixel.
+uncertainty in the measurement of the background photon density, which is
+measured when there is no accelerated election beam. To take this into
+account, this error should be added in quadrature to each pixel.
 
-The upper ranges of this energy spread may also be investigated, however, this
-is less of a priority. Percentage energy spreads up to \SI{80}{\percent} were
+The upper range of the energy spread of the beam may also be investigated, as it
+is expected that as the beam energy moves outside the
+\SIrange{0.28}{6}{\giga\electronvolt} range or the energy spread becomes large
+enough such that enough electrons are outside this range, emittance measurements
+will become more erroneous since a lot of the beam will not hit the screen.
+However, this is less of a priority as percentage energy spreads up to
+\SI{80}{\percent} and beam energies either side of the expected value were
 investigated without signs of alterations to the measured emittance of emittance
-measurement. It is expected that as the beam energy moves outside the
-\SIrange{0.28}{6}{\giga\electronvolt} range, emittance measurements will become
-more erroneous since most of the beam will not hit the screen.
+measurement.
+
 % }}}
 
 \subsection{Input Emittance}
@@ -218,28 +223,28 @@ parameters in Figure~\ref{fig:default}.
 \subsection{Background Photons}
 % {{{
 
-This background noise is the most likely source of error to change during and
-between runs, as all other sources of error arise from intrinsic properties of
-the equipment, or from the setup of the experiment. The background photon noise
-is expected to be almost insignificant in comparison to the signal of the beam,
-where the ratio of signal to background photons is expected to be in the order
-of magnitude \num{4e4}. The aim was to find the level of background photon
-radiation at which the measurement of the emittance would be strongly affected.
-The expected background density was multiplied by an arbitrary factor until the
-emitance value deviated from the true value.  Figure~\ref{fig:emit_bgdens} shows
-how this factor affects the measurement. Only after the expected background has
-beed multiplied by a factor of \num{\sim100} is any effect seen on the measured
+This background noise is the most likely source of error to change between runs,
+as all other sources of error arise from intrinsic properties of the equipment,
+or from the setup of the experiment. The background photon noise is expected to
+be almost insignificant in comparison to the signal of the beam, where the ratio
+of signal to background photons is expected to be in the order of magnitude
+\num{4e4}. The aim was to find the level of background photon radiation at which
+the measurement of the emittance would be strongly affected.  The expected
+background density was multiplied by an arbitrary factor until the emitance
+value deviated from the true value.  Figure~\ref{fig:emit_bgdens} shows how this
+factor affects the measurement. Only after the expected background has been
+multiplied by a factor of \num{\sim100} is any effect seen on the measured
 emittance. Between background factors \num{e2} and \num{e3} the measured
-emittance begins to be underestimated and above a background factor of \num{e3}
-the emittance measurement becomes increasingly imprecise with a deviation a few
-percent at a background factor of \num{2e3}, increasing up to \SI{10}{\percent}
-at a background factor of \num{e7}.
+emittance begins to be underestimated, and above a background factor of \num{e3}
+the emittance measurement becomes increasingly inaccurate.  With a background
+factor of \num{2e3}, a measurement deviation of few percent of the true value,
+increasing up to \SI{10}{\percent} at a background factor of \num{e7}.
 
 The reasoning for a larger spread in the measured emittance values comes from
 the background drowning out the signal, that is, the fluctuations of the
 randomly generated background between the pixels become large enough to distort
 the shape of the image on the screen.  The amount by which the image is distored
-is not taken into account by the error bars in Figure~\ref{fig:emit_bgdens},
+is not taken into account by the error bars in Figure~\ref{fig:large_bg},
 suggesting that error in the background was not completely accounted for. The
 absence of this error is propagated to the error of the emittance measurement,
 as can be seen in Figure~\ref{fig:emit_bgdens}, as the error significanly
