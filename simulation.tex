@@ -44,17 +44,18 @@ reconstruction of the beam in order to measure the parameters of the beam.
 % TODO explain LCODE electrons
 
 Given enough computing power and time, the simulation of the beam, from the end
-of the plasma cell, passing through two quadrupoles and through a dipole could
-have been done on BDSIM~\cite{agapov2009bdsim}, a
-Geant4~\cite{agostinelli2003geant4} toolkit for simulating radiation traveling
-through an accelerator. This software package simulates a each particle
+of the plasma cell, passing through two quadrupoles and through a dipole and
+hitting the scintillator screen could have been done on
+BDSIM~\cite{agapov2009bdsim}, a Geant4~\cite{agostinelli2003geant4} toolkit for
+simulating radiation traveling through an accelerator and accelerator
+components. This software package simulates the motion of each particle
 individually, updating it's position and velocity at each step through the
-accelerator by applying the effect of forces from all fields within the
-accelerator.  For beams consisting of \num{\sim e9} particles, tracking each
+accelerator by applying forces from the fields of each component of the
+accelerator. For beams consisting of \num{\sim e9} particles, tracking each
 particle individually as they travel down the beam line would take enormous
-amounts of time and available computing power, and, as many simulations were
-required to be performed, this would have been impractical for obtaining any
-reasonable amount of data.
+amounts of time and available computing power, and, as this simulation was
+required to be performed a large number of times, this would have been
+impractical for obtaining any reasonable amount of data.
 
 A new program was written, taking advantage of beam matrices to describe the
 beam as a whole. The goal of the first part of this program is to simulate the
@@ -89,35 +90,36 @@ intensity of the incident beam at each pixel on the screen.
 \end{figure*}
 
 The effect of the quadrupole and the dipole are dependant on the energy of the
-individual electrons in the beam.  So to calculate the density of an electrons
-along with their energies as a function of the horizontal screen position a
-number of BDSIM simulations were run. \num{e5} electrons where fired
-individually down the simulated AWAKE beam line. These electrons had a square
-energy distribution from \SIrange{0}{10} {\tera\electronvolt}, and had a
-Gaussian spacial distribution with \(\sigma_x = \sigma_y =
-\SI{6}{\milli\meter}\), and no transverse momentum hence zero emittance. This
-large energy range was chosen as to encompass the entire energy range that would
-hit the screen. The dipole was set to it's highest setting of \SI{650}{\ampere}
-to achieve the maximum spread of the beam on the screen.
+individual electrons in the beam.  So to calculate the density and energy of the
+electrons as a function of the horizontal screen position a number of BDSIM
+simulations were run. \num{1e5} electrons where fired individually down the
+simulated AWAKE beam line. These electrons had a square energy distribution from
+\SIrange{0}{10} {\tera\electronvolt}, and had a Gaussian spacial distribution
+with \(\sigma_x = \sigma_y = \SI{6}{\milli\meter}\) (this is the size of the
+iris at the end of the plasma), and no transverse momentum. This large energy
+range was chosen to encompass the entire energy range that would hit the screen.
+The dipole was set to it's highest setting of \SI{650}{\ampere} to achieve the
+maximum spread of the beam on the screen.
 
 % TODO why use no emittance beams for calibration
 These BDSIM runs were used to plot the function in Figure~\ref{fig:eofx} which
-shows the relationship between the electron energy and where is it expected to
+shows the relationship between an electron's energy and where is it expected to
 hit the screen. Figure~\ref{fig:edist} is an example of the horizontal
-distribution of a beam of electrons with a Gaussian energy spread onto the
-screen. This was calculated by applying the inverse of the function \(E(x)\)
-shown in Figure~\ref{fig:eofx}, to the energy distribution of the beam.
+distribution of a beam of electrons, with a Gaussian energy spread, onto the
+screen and all other experimental parameters set to their expected default
+value. This was calculated by applying \(x(E)\), the inverse of the function
+\(E(x)\) shown in Figure~\ref{fig:eofx}, to the energy distribution of the beam.
 
-At these experiment settings, the entire of the beam electrons hit the screen
-allowing for a more accurate measurement of the beam parameters.  The effect of
-the emittance and quadrupoles on the horizontal spread is taken to be negligible
-in comparison to the effect of the dipole, and so it's effect is taken into
-account by adding a horizontal smearing to the horizontal position of each
-electron on the screen. This results in this plot being all that is required to
-simulate the transverse spread of the beam.
+At these settings of the experiment, all of the electrons of the beam hit the
+screen, allowing for an more accurate measurement of the beam parameters.  The
+effect of the emittance and quadrupoles on the horizontal spread is taken to be
+negligible in comparison to the effect of the dipole, so it's effect is taken
+into account by adding a horizontal smearing to the horizontal position of each
+electron on the screen. This means that this plot in Figure~\ref{fig:eofx} is
+all that is required to simulate the transverse spread of the beam.
 
 The drift distances from the second quadrupole to the screen were also recorded
-for each \(x\) position on the screen. This function \(d(x)\) is used in the
+for each \(x\) position on the screen. This function \(d(E(x))\) is used in the
 calculation of the vertical beam size.
 
 
@@ -134,8 +136,8 @@ all strips and the maximum value was a \SI{0.5}{\percent} difference in energy.
 Using this assumption, we are able to create one beam and transport matrix for
 electrons in each vertical stream of pixels. The root mean square of the
 vertical beam size on the screen can be extracted from the resultant beam matrix
-\(\sigma_1\). To arrive at this beam matrix, the transport matrix
-\(\mathcal{M}\) is applied to the initial beam matrix \(\sigma_0\) in
+\(\bm{\sigma}_1\). To arrive at this beam matrix, the transport matrix
+\(\mathcal{M}\) is applied to the initial beam matrix \(\bm{\sigma}_0\) using
 (\ref{eq:apply}). The transport matrix is the product of the transport matrices
 of each component of the spectrometer:
 \begin{equation}
@@ -145,15 +147,15 @@ of each component of the spectrometer:
 		\cdot\;\mathcal{M}_{QF}(l_1) \cdot \mathcal{M}_D(g_1)
 	\end{split}
 \end{equation}
-where \(\mathcal{M}_D(d)\) is the drift transport matrix which is a function of
-the travel distance and \(\mathcal{M}_{QD}(l)\) is the transport matrix of the
-quadrupole. \(g_1\) is the drift distance (the gap) between the end of the
-plasma cell and the first quadrupole, \(g_2\) is the gap between the two
-quadrupoles, \(l_1\) and \(l_2\) are the effective quadrupole lengths of the
-focusing and defocusing quadrupoles respectively. \(d\) is the drift distance
-between the second quadrupole and the screen, taking into account the effect of
-the dipole, hence, is a function of the energy. The shape of this function was
-calculated in the BSDIM runs.
+where \(\mathcal{M}_D\) is the drift transport matrix which is a function of the
+travel distance and \(\mathcal{M}_{QF}\) and \(\mathcal{M}_{QD}\) are the
+transport matrices of the quadrupole. \(g_1\) is the drift distance (the gap)
+between the end of the plasma cell and the first quadrupole, \(g_2\) is the gap
+between the two quadrupoles, \(l_1\) and \(l_2\) are the effective quadrupole
+lengths of the focusing and defocusing quadrupoles respectively. \(d\) is the
+drift distance between the second quadrupole and the screen, taking into account
+the effect of the dipole, hence, is a function of the energy which was
+calculated in the BDSIM calibration stage.
 
 For simplicity, it is assumed that the quadrupoles strengths \(k_1\) and \(k_2\)
 are set to values such that each quadrupole focuses at the mean energy of the
@@ -164,8 +166,8 @@ beam, hence these variables are proportional to the beam's mean energy.
 
 % The beam matrix element \(\sigma_{11} = \langle y \rangle^2 = \epsilon\beta\)
 
-Applying the matrix multiplication results in the vertical beam size as a
-function of the horizontal screen position:
+By applying the matrix multiplication the vertical beam size as a
+function of the horizontal screen position can be extracted:
 \begin{equation}
 	\begin{split}
 		\sigma_y^2 = \sigma_{1,11} =\: & C^2(x)\sigma_{0,11} \\
@@ -174,10 +176,13 @@ function of the horizontal screen position:
 	\end{split}
 \end{equation}
 
-After generating, a two dimensional histogram representing the number of
-electrons hitting the screen at each pixel the goal is to simulate the
-effectiveness of the equipment and translate this number to represent the raw
-signal that will be read off for each pixel.
+Using this beam spread function, a Gaussian distribution of electrons for each
+vertical pixel strip is generated with \(\sigma_y^2\) used as the variance of
+the distribution.  After generating, a two dimensional histogram representing
+the number of electrons hitting the screen at each pixel the goal is to simulate
+the effectiveness of the equipment and the effect of background noise then
+translate this number to represent the raw signal that will be received from the
+camera.
 
 \subsection{Backgrounds}
 
@@ -194,14 +199,14 @@ source of noise is added to each pixel independently.
 
 % TODO cite 5000
 The first two error sources, the scintillator screen and the camera acceptance,
-both scale the signal. So for each electron that hits the screen, it is
-expected that an average of \num{5000} photons are to be emitted. The
-camera acceptance, is the ratio of photons that the camera registers to the
-number of photons emitted by the scintillator, with a value of \num{1.5e-5}.
-After the addition of these two effects, the camera is expected to receive
-\SI{7.5}{\percent} of the original electron signal. The expected value for the
-number of photons incident on the camera due to the beam electrons is a Poisson
-random number.
+both scale the original signal. So for each electron that hits the screen, it is
+expected that an average of \num{5000} photons are to be emitted radially with a
+cosine distribution. The camera acceptance, is the ratio of photons that the
+camera registers to the number of photons emitted by the scintillator, with a
+value of \num{1.5e-5}.  After the addition of these two effects, the camera is
+expected to receive \SI{7.5}{\percent} of the original electron signal. The
+expected value for the number of photons incident on the camera due to the beam
+electrons is a Poisson random number.
 
 It is assumed that there is a uniform distribution of photons incident on the
 camera. The density of these electrons is expected to be
